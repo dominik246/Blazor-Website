@@ -16,7 +16,7 @@ namespace ShortestPathAlgorithms
             try
             {
                 var services = BuildServiceProvider();
-                await services.GetRequiredService<DijkstraAlgorithm>().Get(new Vector2(0, 0), new Vector2(2, 2));
+                await services.GetRequiredService<DijkstraAlgorithm>().GetAsync(new Vector2(0, 0), new Vector2(2, 2));
             }
             catch (Exception ex)
             {

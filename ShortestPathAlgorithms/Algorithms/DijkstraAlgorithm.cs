@@ -4,7 +4,6 @@ using ShortestPathAlgorithms.Models;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 
@@ -25,13 +24,20 @@ namespace ShortestPathAlgorithms.Algorithms
             _updateGraph = updateGraph;
         }
 
-        private async Task<List<List<BasicNodeModel>>> Calculate(Vector2 startCoord, Vector2 finishCoord, List<List<BasicNodeModel>> graph)
+        /// <summary>
+        /// Assigns distance values to every node in the given graph.
+        /// </summary>
+        /// <param name="startCoord"></param>
+        /// <param name="finishCoord"></param>
+        /// <param name="graph"></param>
+        /// <returns>Returns a graph with an assigned distance value to every node.</returns>
+        private async Task<List<List<BasicNodeModel>>> CalculateAsync(Vector2 startCoord, Vector2 finishCoord, List<List<BasicNodeModel>> graph)
         {
             //TODO: bind with website so that it's dynamic
             // starts with 0
             const int width = 3;
             const int height = 3;
-            
+
             graph = await _createGraph.GetAsync(width, height);
 
             List<BasicNodeModel> visitedNodesInOrder = new List<BasicNodeModel>();
@@ -57,16 +63,7 @@ namespace ShortestPathAlgorithms.Algorithms
 
             while (unvisitedNodes.Count > 0)
             {
-                unvisitedNodes = await _sortNodes.Sort(unvisitedNodes);
-
-                //foreach (var node in unvisitedNodes)
-                //{
-                //    if (node.NodeType is UnitType.StartNode ||
-                //        node.NodeType is UnitType.FinishNode)
-                //    {
-                //        Console.WriteLine("helo");
-                //    }
-                //}
+                unvisitedNodes = await _sortNodes.SortAsync(unvisitedNodes);
 
                 BasicNodeModel closestNode = unvisitedNodes[0];
                 unvisitedNodes.RemoveAt(0);
@@ -83,20 +80,25 @@ namespace ShortestPathAlgorithms.Algorithms
                 if (closestNode.NodeType is UnitType.FinishNode)
                     break;
 
-                await _updateGraph.Update(closestNode, graph);
+                await _updateGraph.UpdateAsync(closestNode, graph);
             }
 
             return graph;
         }
 
-        private async Task<List<BasicNodeModel>> ShortestPath(Vector2 finishCoord, List<List<BasicNodeModel>> graph)
+        /// <summary>
+        /// Calculates the shortest path.
+        /// </summary>
+        /// <param name="finishCoord"></param>
+        /// <param name="graph"></param>
+        /// <returns>Returns the shortest path from the start node to the finish node.</returns>
+        private async Task<List<BasicNodeModel>> ShortestPathAsync(Vector2 finishCoord, List<List<BasicNodeModel>> graph)
         {
             List<BasicNodeModel> nodesInShortestPathOrder = new List<BasicNodeModel>();
             var currentNode = graph[(int)finishCoord.Y][(int)finishCoord.X];
 
             await Task.Run(() =>
             {
-                // forever loop
                 while (!(currentNode is null))
                 {
                     nodesInShortestPathOrder.Add(currentNode);
@@ -111,29 +113,21 @@ namespace ShortestPathAlgorithms.Algorithms
             return nodesInShortestPathOrder;
         }
 
-        public async Task Get(Vector2 startCoord, Vector2 finishCoord)
+        /// <summary>
+        /// Gets the shortest path from StartCoord to FinishCoord
+        /// </summary>
+        /// <param name="startCoord"></param>
+        /// <param name="finishCoord"></param>
+        /// <returns>Returns the shortest path.</returns>
+        public async Task GetAsync(Vector2 startCoord, Vector2 finishCoord)
         {
             List<List<BasicNodeModel>> graph = new List<List<BasicNodeModel>>();
 
-            graph = await Calculate(startCoord, finishCoord, graph);
+            graph = await CalculateAsync(startCoord, finishCoord, graph);
 
-            //foreach (var list in graph)
-            //{
-            //    foreach (var unit in list)
-            //    {
-            //        var distance = unit.Distance;
+            var shortestPathList = await ShortestPathAsync(finishCoord, graph);
 
-            //        if (distance is int.MaxValue)
-            //            distance = -1;
-
-            //        Console.Write($"{distance}, ");
-            //    }
-            //    Console.Write(Environment.NewLine);
-            //}
-
-            var shortestPathList = await ShortestPath(finishCoord, graph);
-
-            foreach(var node in shortestPathList)
+            foreach (var node in shortestPathList)
             {
                 Console.WriteLine($"{node.CoordX}, {node.CoordY}");
             }

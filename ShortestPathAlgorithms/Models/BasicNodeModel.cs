@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
+﻿using System.Numerics;
 
 namespace ShortestPathAlgorithms.Models
 {
-    public enum UnitType { BasicNode = 0, StartNode, FinishNode, WallNode}
+    /// <summary>
+    /// Enum containing all the possible unit types that can occur in the graph.
+    /// </summary>
+    public enum UnitType { BasicNode = 0, StartNode, FinishNode, WallNode }
 
+    /// <summary>
+    /// Constructor for the basic node in the graph.
+    /// </summary>
     public class BasicNodeModel
     {
         public int CoordX { get; set; }

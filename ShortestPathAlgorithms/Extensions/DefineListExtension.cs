@@ -1,21 +1,29 @@
 ﻿using ShortestPathAlgorithms.Models;
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ShortestPathAlgorithms.Extensions
 {
     public static class DefineListExtension
     {
+        /// <summary>
+        /// Replaces a basic node with the specified node in the graph.
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="node"></param>
         public static void Define(this List<List<BasicNodeModel>> graph, BasicNodeModel node)
         {
             graph[node.CoordY][node.CoordX] = node;
         }
 
+        /// <summary>
+        /// Replaces the basic nodes with the specified nodes in the graph.
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="nodes"></param>
         public static void Define(this List<List<BasicNodeModel>> graph, BasicNodeModel[] nodes)
         {
-            foreach(var node in nodes)
+            foreach (var node in nodes)
             {
                 graph[node.CoordY][node.CoordX] = node;
             }

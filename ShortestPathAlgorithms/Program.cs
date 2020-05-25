@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShortestPathAlgorithms
+﻿namespace ShortestPathAlgorithms
 {
     public class Program
     {
