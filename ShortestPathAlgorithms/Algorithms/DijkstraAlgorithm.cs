@@ -1,4 +1,5 @@
 ﻿using AlgorithmLibrary;
+using AlgorithmLibrary.IModels;
 
 using ShortestPathAlgorithms.Extensions;
 using ShortestPathAlgorithms.Helpers;

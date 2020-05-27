@@ -1,16 +1,18 @@
-﻿using System.Numerics;
+﻿using AlgorithmLibrary.IModels;
+
+using System.Numerics;
 
 namespace ShortestPathAlgorithms.Models
 {
     /// <summary>
     /// Enum containing all the possible unit types that can occur in the graph.
     /// </summary>
-    public enum UnitType { BasicNode = 0, StartNode, FinishNode, WallNode, CheckPoint }
+    //public enum UnitType { BasicNode = 0, StartNode, FinishNode, WallNode, CheckPoint }
 
     /// <summary>
     /// Constructor for the basic node in the graph.
     /// </summary>
-    public class BasicNodeModel
+    public class BasicNodeModel : IBasicNodeModel
     {
         public int CoordX { get; set; }
         public int CoordY { get; set; }

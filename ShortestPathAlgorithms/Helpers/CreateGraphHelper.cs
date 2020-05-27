@@ -1,4 +1,6 @@
-﻿using ShortestPathAlgorithms.Models;
+﻿using AlgorithmLibrary.IModels;
+
+using ShortestPathAlgorithms.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
