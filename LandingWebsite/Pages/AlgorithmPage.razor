@@ -1,0 +1,24 @@
+﻿@page "/algorithms"
+
+<h3>AlgorithmPage</h3>
+
+<div @onload="LoadedPage" style="
+    height: 50%; 
+    position: absolute; 
+    top: 20%; 
+    left: 20%;
+    ">
+
+</div>
+
+@code {
+    private async Task LoadedPage()
+    {
+        await RenderGrid();
+    }
+
+    private async Task RenderGrid()
+    {
+
+    }
+}
