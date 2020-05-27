@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AlgorithmLibrary;
+
+using Microsoft.Extensions.DependencyInjection;
+
 using ShortestPathAlgorithms.Algorithms;
 using ShortestPathAlgorithms.Helpers;
+
 using System;
 using System.Numerics;
 using System.Threading.Tasks;
-using AlgorithmLibrary;
 
 namespace ShortestPathAlgorithms
 {
