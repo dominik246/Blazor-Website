@@ -1,7 +1,7 @@
-﻿using ShortestPathAlgorithms.Extensions;
+﻿using AlgorithmLibrary;
+using ShortestPathAlgorithms.Extensions;
 using ShortestPathAlgorithms.Helpers;
 using ShortestPathAlgorithms.Models;
-
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShortestPathAlgorithms.Algorithms
 {
-    public class DijkstraAlgorithm
+    public class DijkstraAlgorithm : IDijkstraAlgorithm
     {
         private readonly CreateGraphHelper _createGraph;
         private readonly GetAllNodesHelper _getNodes;

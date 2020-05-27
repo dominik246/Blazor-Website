@@ -1,0 +1,149 @@
+﻿/*html, body {
+    overflow: hidden;
+    height: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 1000%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}*/
+
+body {
+    background: #3399ff;
+    overflow: hidden;
+}
+
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: ripple 15s infinite;
+    box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small {
+    width: 200px;
+    height: 200px;
+    left: -100px;
+    bottom: -100px;
+}
+
+.medium {
+    width: 400px;
+    height: 400px;
+    left: -200px;
+    bottom: -200px;
+}
+
+.large {
+    width: 600px;
+    height: 600px;
+    left: -300px;
+    bottom: -300px;
+}
+
+.xlarge {
+    width: 800px;
+    height: 800px;
+    left: -400px;
+    bottom: -400px;
+}
+
+.xxlarge {
+    width: 1000px;
+    height: 1000px;
+    left: -500px;
+    bottom: -500px;
+}
+
+.shade1 {
+    opacity: 0.2;
+}
+
+.shade2 {
+    opacity: 0.5;
+}
+
+.shade3 {
+    opacity: 0.7;
+}
+
+.shade4 {
+    opacity: 0.8;
+}
+
+.shade5 {
+    opacity: 0.9;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0.8);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(0.8);
+    }
+}
+
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+    .box .sub_box {
+        width: 35vw;
+        height: 35vh;
+        float: left;
+        overflow: hidden;
+    }
+
+        .box .sub_box .box_item {
+            font-size: 20px;
+            line-height: 35vh;
+            transition: all 0ms;
+            display: block;
+            height: 100%;
+            z-index: 995;
+            box-shadow: 0 3px 36px 0 rgba(0, 0, 0, 0.6);
+            opacity: 0.7;
+            color: #666;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+            background-color: white;
+        }
+
+            .box .sub_box .box_item:hover {
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+                margin-top: -10px;
+                color: #444;
+            }
+
+.left {
+    margin-right: 100px;
+}
+
+.right {
+    margin-left: 100px;
+}
