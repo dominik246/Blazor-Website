@@ -1,2 +1,20 @@
-﻿body {
+﻿.main_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
 }
+
+    .main_div .container_div {
+        float: left;
+    }
+
+        .main_div .container_div .grid_unit {
+            background-color: blue;
+            height: 30vh;
+            width: 20vw;
+            border: 5px solid grey;
+            
+            
+        }

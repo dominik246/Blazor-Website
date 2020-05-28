@@ -2,31 +2,54 @@
 
 @inject ICreateGraphHelper _createGraph;
 
-<h3>AlgorithmPage</h3>
+<div @onloadstart="LoadedPage" class="main_div">
 
-<div @onload="LoadedPage" style="
-    height: 50%; 
-    position: absolute; 
-    top: 20%; 
-    left: 20%;
-    ">
+
+    @for (int i = 0; i < 3; i++)
+    {
+        <div class="container_div">
+            @for (int j = 0; j < 3; j++)
+            {
+                //TODO: to read https://www.html5rocks.com/en/tutorials/dnd/basics/
+                <div class="grid_unit">
+                    @if (!finishPresent)
+                    {
+                        <div draggable="true" style="background-color: black; width: 5vw; height: 5vh;"></div>
+                        finishPresent = true;
+                    }
+                    else if(!startPresent)
+                    {
+                        <div draggable="true" style="background-color: white; width: 5vw; height: 5vh;"></div>
+                        startPresent = true;
+                    }
+                </div>
+            }
+        </div>
+    }
+
 
 </div>
 
 @code {
+    public Vector2 Coord { get; set; } = new Vector2(3, 3);
+
+    public List<List<IBasicNodeModel>> Graph { get; set; }
+
+    private bool finishPresent;
+    private bool startPresent;
+
+
     private async Task LoadedPage()
     {
-        IBasicNodeModel node = new BasicNodeModel
-        {
-
-        };
-
-        List<List<IBasicNodeModel>> graph = await _createGraph.GetAsync(9, 9);
-
-
+        await RenderGrid();
     }
 
     private async Task RenderGrid()
+    {
+        Graph = await _createGraph.GetAsync((int)Coord.X, (int)Coord.Y);
+    }
+
+    private async Task OnGridChange()
     {
 
     }
