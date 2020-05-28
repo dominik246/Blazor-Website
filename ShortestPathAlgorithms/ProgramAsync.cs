@@ -3,8 +3,6 @@ using AlgorithmLibrary.Helpers;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using ShortestPathAlgorithms.Algorithms;
-
 using System;
 using System.Numerics;
 using System.Threading.Tasks;

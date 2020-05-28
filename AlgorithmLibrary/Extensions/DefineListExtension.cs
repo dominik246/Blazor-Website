@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace ShortestPathAlgorithms.Extensions
+namespace AlgorithmLibrary.Extensions
 {
     public static class DefineListExtension
     {

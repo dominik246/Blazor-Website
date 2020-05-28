@@ -1,15 +1,13 @@
-﻿using AlgorithmLibrary.Algorithms;
+﻿using AlgorithmLibrary.Extensions;
 using AlgorithmLibrary.Helpers;
 using AlgorithmLibrary.Models;
-
-using ShortestPathAlgorithms.Extensions;
 
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace ShortestPathAlgorithms.Algorithms
+namespace AlgorithmLibrary.Algorithms
 {
     public class DijkstraAlgorithm : IDijkstraAlgorithm
     {

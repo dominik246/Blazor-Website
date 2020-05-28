@@ -4,7 +4,7 @@ using System;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace ShortestPathAlgorithms.Algorithms
+namespace AlgorithmLibrary.Algorithms
 {
     public class AStarSearchAlgorithm : IAStarSearchAlgorithm
     {
