@@ -1,8 +1,6 @@
-﻿using AlgorithmLibrary.IModels;
+﻿using System.Numerics;
 
-using System.Numerics;
-
-namespace ShortestPathAlgorithms.Models
+namespace AlgorithmLibrary.Models
 {
     /// <summary>
     /// Enum containing all the possible unit types that can occur in the graph.

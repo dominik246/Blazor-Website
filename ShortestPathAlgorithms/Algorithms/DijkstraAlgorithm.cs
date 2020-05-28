@@ -1,9 +1,8 @@
 ﻿using AlgorithmLibrary;
-using AlgorithmLibrary.IModels;
+using AlgorithmLibrary.Helpers;
+using AlgorithmLibrary.Models;
 
 using ShortestPathAlgorithms.Extensions;
-using ShortestPathAlgorithms.Helpers;
-using ShortestPathAlgorithms.Models;
 
 using System;
 using System.Collections.Generic;
@@ -14,12 +13,12 @@ namespace ShortestPathAlgorithms.Algorithms
 {
     public class DijkstraAlgorithm : IDijkstraAlgorithm
     {
-        private readonly CreateGraphHelper _createGraph;
-        private readonly GetAllNodesHelper _getNodes;
-        private readonly SortNodesByDistanceHelper _sortNodes;
-        private readonly UpdateUnvisitedNodesHelper _updateGraph;
+        private readonly ICreateGraphHelper _createGraph;
+        private readonly IGetAllNodesHelper _getNodes;
+        private readonly ISortNodesByDistanceHelper _sortNodes;
+        private readonly IUpdateUnvisitedNodesHelper _updateGraph;
 
-        public DijkstraAlgorithm(CreateGraphHelper createGraph, GetAllNodesHelper getNodes, SortNodesByDistanceHelper sortNodes, UpdateUnvisitedNodesHelper updateGraph)
+        public DijkstraAlgorithm(ICreateGraphHelper createGraph, IGetAllNodesHelper getNodes, ISortNodesByDistanceHelper sortNodes, IUpdateUnvisitedNodesHelper updateGraph)
         {
             _createGraph = createGraph;
             _getNodes = getNodes;
@@ -34,7 +33,7 @@ namespace ShortestPathAlgorithms.Algorithms
         /// <param name="finishCoord"></param>
         /// <param name="graph"></param>
         /// <returns>Returns a graph with an assigned distance value to every node.</returns>
-        private async Task<List<List<BasicNodeModel>>> CalculateAsync(Vector2 startCoord, Vector2 finishCoord, List<List<BasicNodeModel>> graph)
+        private async Task<List<List<IBasicNodeModel>>> CalculateAsync(Vector2 startCoord, Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
         {
             //TODO: bind with website so that it's dynamic
             // starts with 0
@@ -43,9 +42,9 @@ namespace ShortestPathAlgorithms.Algorithms
 
             graph = await _createGraph.GetAsync(width, height);
 
-            List<BasicNodeModel> visitedNodesInOrder = new List<BasicNodeModel>();
+            List<IBasicNodeModel> visitedNodesInOrder = new List<IBasicNodeModel>();
 
-            BasicNodeModel startNode = new BasicNodeModel
+            IBasicNodeModel startNode = new BasicNodeModel
             {
                 Distance = 0,
                 CoordX = (int)startCoord.X,
@@ -53,22 +52,22 @@ namespace ShortestPathAlgorithms.Algorithms
                 NodeType = UnitType.StartNode
             };
 
-            BasicNodeModel finishNode = new BasicNodeModel
+            IBasicNodeModel finishNode = new BasicNodeModel
             {
                 CoordX = (int)finishCoord.X,
                 CoordY = (int)finishCoord.Y,
                 NodeType = UnitType.FinishNode
             };
 
-            graph.Define(new BasicNodeModel[] { startNode, finishNode });
+            graph.Define(new IBasicNodeModel[] { startNode, finishNode });
 
-            List<BasicNodeModel> unvisitedNodes = await _getNodes.GetAsync(graph);
+            List<IBasicNodeModel> unvisitedNodes = await _getNodes.GetAsync(graph);
 
             while (unvisitedNodes.Count > 0)
             {
                 unvisitedNodes = await _sortNodes.SortAsync(unvisitedNodes);
 
-                BasicNodeModel closestNode = unvisitedNodes[0];
+                IBasicNodeModel closestNode = unvisitedNodes[0];
                 unvisitedNodes.RemoveAt(0);
 
                 if (closestNode.NodeType is UnitType.WallNode)
@@ -95,9 +94,9 @@ namespace ShortestPathAlgorithms.Algorithms
         /// <param name="finishCoord"></param>
         /// <param name="graph"></param>
         /// <returns>Returns the shortest path from the start node to the finish node.</returns>
-        private async Task<List<BasicNodeModel>> ShortestPathAsync(Vector2 finishCoord, List<List<BasicNodeModel>> graph)
+        private async Task<List<IBasicNodeModel>> ShortestPathAsync(Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
         {
-            List<BasicNodeModel> nodesInShortestPathOrder = new List<BasicNodeModel>();
+            List<IBasicNodeModel> nodesInShortestPathOrder = new List<IBasicNodeModel>();
             var currentNode = graph[(int)finishCoord.Y][(int)finishCoord.X];
 
             await Task.Run(() =>
@@ -124,7 +123,7 @@ namespace ShortestPathAlgorithms.Algorithms
         /// <returns>Returns the shortest path.</returns>
         public async Task GetAsync(Vector2 startCoord, Vector2 finishCoord)
         {
-            List<List<BasicNodeModel>> graph = new List<List<BasicNodeModel>>();
+            List<List<IBasicNodeModel>> graph = new List<List<IBasicNodeModel>>();
 
             graph = await CalculateAsync(startCoord, finishCoord, graph);
 

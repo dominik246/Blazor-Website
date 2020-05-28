@@ -1,11 +1,11 @@
-﻿using ShortestPathAlgorithms.Models;
+﻿using AlgorithmLibrary.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ShortestPathAlgorithms.Helpers
+namespace AlgorithmLibrary.Helpers
 {
-    public class GetNeighborsHelper
+    public class GetNeighborsHelper : IGetNeighborsHelper
     {
         /// <summary>
         /// Calculates neighbors of a given node.
@@ -13,9 +13,9 @@ namespace ShortestPathAlgorithms.Helpers
         /// <param name="node"></param>
         /// <param name="graph"></param>
         /// <returns>Returns the neighbors of a specified node in the graph.</returns>
-        public async Task<List<BasicNodeModel>> GetAsync(BasicNodeModel node, List<List<BasicNodeModel>> graph)
+        public async Task<List<IBasicNodeModel>> GetAsync(IBasicNodeModel node, List<List<IBasicNodeModel>> graph)
         {
-            List<BasicNodeModel> neighbors = new List<BasicNodeModel>();
+            List<IBasicNodeModel> neighbors = new List<IBasicNodeModel>();
             int col = node.CoordX;
             int row = node.CoordY;
 

@@ -1,11 +1,11 @@
-﻿using AlgorithmLibrary.IModels;
+﻿using AlgorithmLibrary.Models;
 
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.IHelpers
+namespace AlgorithmLibrary.Helpers
 {
     public interface ICreateGraphHelper
     {

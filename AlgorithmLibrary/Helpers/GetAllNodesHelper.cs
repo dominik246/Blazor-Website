@@ -1,20 +1,20 @@
-﻿using ShortestPathAlgorithms.Models;
+﻿using AlgorithmLibrary.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ShortestPathAlgorithms.Helpers
+namespace AlgorithmLibrary.Helpers
 {
-    public class GetAllNodesHelper
+    public class GetAllNodesHelper : IGetAllNodesHelper
     {
         /// <summary>
         /// Converts a given 2D list to a 1D list.
         /// </summary>
         /// <param name="graph"></param>
         /// <returns>Returns a 1D list.</returns>
-        public async Task<List<BasicNodeModel>> GetAsync(List<List<BasicNodeModel>> graph)
+        public async Task<List<IBasicNodeModel>> GetAsync(List<List<IBasicNodeModel>> graph)
         {
-            List<BasicNodeModel> nodes = new List<BasicNodeModel>();
+            List<IBasicNodeModel> nodes = new List<IBasicNodeModel>();
 
             await Task.Run(() =>
             {

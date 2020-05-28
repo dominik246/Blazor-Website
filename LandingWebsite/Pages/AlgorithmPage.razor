@@ -1,5 +1,7 @@
 ﻿@page "/algorithms"
 
+@inject ICreateGraphHelper _createGraph;
+
 <h3>AlgorithmPage</h3>
 
 <div @onload="LoadedPage" style="
@@ -14,7 +16,14 @@
 @code {
     private async Task LoadedPage()
     {
-        await RenderGrid();
+        IBasicNodeModel node = new BasicNodeModel
+        {
+
+        };
+
+        List<List<IBasicNodeModel>> graph = await _createGraph.GetAsync(9, 9);
+
+
     }
 
     private async Task RenderGrid()

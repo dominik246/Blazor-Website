@@ -1,16 +1,16 @@
-﻿using ShortestPathAlgorithms.Models;
+﻿using AlgorithmLibrary.Models;
 
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace ShortestPathAlgorithms.Helpers
+namespace AlgorithmLibrary.Helpers
 {
-    public class UpdateUnvisitedNodesHelper
+    public class UpdateUnvisitedNodesHelper : IUpdateUnvisitedNodesHelper
     {
-        private readonly GetNeighborsHelper _neighbors;
+        private readonly IGetNeighborsHelper _neighbors;
 
-        public UpdateUnvisitedNodesHelper(GetNeighborsHelper neighbors)
+        public UpdateUnvisitedNodesHelper(IGetNeighborsHelper neighbors)
         {
             _neighbors = neighbors;
         }
@@ -20,9 +20,9 @@ namespace ShortestPathAlgorithms.Helpers
         /// </summary>
         /// <param name="node"></param>
         /// <param name="graph"></param>
-        public async Task UpdateAsync(BasicNodeModel node, List<List<BasicNodeModel>> graph)
+        public async Task UpdateAsync(IBasicNodeModel node, List<List<IBasicNodeModel>> graph)
         {
-            List<BasicNodeModel> list = await _neighbors.GetAsync(node, graph);
+            List<IBasicNodeModel> list = await _neighbors.GetAsync(node, graph);
 
             foreach (var neighbor in list)
             {

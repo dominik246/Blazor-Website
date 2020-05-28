@@ -1,13 +1,11 @@
-﻿using AlgorithmLibrary.IModels;
-
-using ShortestPathAlgorithms.Models;
+﻿using AlgorithmLibrary.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ShortestPathAlgorithms.Helpers
+namespace AlgorithmLibrary.Helpers
 {
-    public class CreateGraphHelper
+    public class CreateGraphHelper : ICreateGraphHelper
     {
         /// <summary>
         /// Creates a 2D list based on the given parameters.
@@ -15,15 +13,15 @@ namespace ShortestPathAlgorithms.Helpers
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns>Returns a 2D list.</returns>
-        public async Task<List<List<BasicNodeModel>>> GetAsync(int width, int height)
+        public async Task<List<List<IBasicNodeModel>>> GetAsync(int width, int height)
         {
-            List<List<BasicNodeModel>> graph = new List<List<BasicNodeModel>>();
+            List<List<IBasicNodeModel>> graph = new List<List<IBasicNodeModel>>();
 
             await Task.Run(() =>
             {
                 for (int i = 0; i < height; i++)
                 {
-                    graph.Add(new List<BasicNodeModel>());
+                    graph.Add(new List<IBasicNodeModel>());
                     for (int j = 0; j < width; j++)
                     {
                         graph[i].Add(new BasicNodeModel

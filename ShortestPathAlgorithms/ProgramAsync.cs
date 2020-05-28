@@ -1,9 +1,9 @@
 ﻿using AlgorithmLibrary;
+using AlgorithmLibrary.Helpers;
 
 using Microsoft.Extensions.DependencyInjection;
 
 using ShortestPathAlgorithms.Algorithms;
-using ShortestPathAlgorithms.Helpers;
 
 using System;
 using System.Numerics;
@@ -28,11 +28,11 @@ namespace ShortestPathAlgorithms
         }
         private IServiceProvider BuildServiceProvider()
             => new ServiceCollection()
-            .AddSingleton<CreateGraphHelper>()
-            .AddSingleton<GetAllNodesHelper>()
-            .AddSingleton<SortNodesByDistanceHelper>()
-            .AddSingleton<GetNeighborsHelper>()
-            .AddSingleton<UpdateUnvisitedNodesHelper>()
+            .AddSingleton<ICreateGraphHelper, CreateGraphHelper>()
+            .AddSingleton<IGetAllNodesHelper, GetAllNodesHelper>()
+            .AddSingleton<ISortNodesByDistanceHelper, SortNodesByDistanceHelper>()
+            .AddSingleton<IGetNeighborsHelper, GetNeighborsHelper>()
+            .AddSingleton<IUpdateUnvisitedNodesHelper, UpdateUnvisitedNodesHelper>()
             .AddSingleton<IDijkstraAlgorithm, DijkstraAlgorithm>()
             .AddSingleton<IAStarSearchAlgorithm, AStarSearchAlgorithm>()
             .BuildServiceProvider();

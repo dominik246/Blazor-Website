@@ -8,4 +8,8 @@
     <Folder Include="Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AlgorithmLibrary\AlgorithmLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

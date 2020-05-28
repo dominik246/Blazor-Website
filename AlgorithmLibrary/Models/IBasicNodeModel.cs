@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
-namespace AlgorithmLibrary.IModels
+namespace AlgorithmLibrary.Models
 {
     public enum UnitType { BasicNode = 0, StartNode, FinishNode, WallNode, CheckPoint }
 

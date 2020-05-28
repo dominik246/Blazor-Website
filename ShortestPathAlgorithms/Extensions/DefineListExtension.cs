@@ -1,4 +1,4 @@
-﻿using ShortestPathAlgorithms.Models;
+﻿using AlgorithmLibrary.Models;
 
 using System.Collections.Generic;
 
@@ -11,7 +11,7 @@ namespace ShortestPathAlgorithms.Extensions
         /// </summary>
         /// <param name="graph"></param>
         /// <param name="node"></param>
-        public static void Define(this List<List<BasicNodeModel>> graph, BasicNodeModel node)
+        public static void Define(this List<List<IBasicNodeModel>> graph, IBasicNodeModel node)
         {
             graph[node.CoordY][node.CoordX] = node;
         }
@@ -21,7 +21,7 @@ namespace ShortestPathAlgorithms.Extensions
         /// </summary>
         /// <param name="graph"></param>
         /// <param name="nodes"></param>
-        public static void Define(this List<List<BasicNodeModel>> graph, BasicNodeModel[] nodes)
+        public static void Define(this List<List<IBasicNodeModel>> graph, IBasicNodeModel[] nodes)
         {
             foreach (var node in nodes)
             {
