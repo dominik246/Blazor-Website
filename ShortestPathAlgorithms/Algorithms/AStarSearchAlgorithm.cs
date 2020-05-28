@@ -1,4 +1,4 @@
-﻿using AlgorithmLibrary;
+﻿using AlgorithmLibrary.Algorithms;
 
 using System;
 using System.Numerics;

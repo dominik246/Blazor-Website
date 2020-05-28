@@ -1,4 +1,4 @@
-﻿using AlgorithmLibrary;
+﻿using AlgorithmLibrary.Algorithms;
 using AlgorithmLibrary.Helpers;
 
 using Microsoft.Extensions.DependencyInjection;

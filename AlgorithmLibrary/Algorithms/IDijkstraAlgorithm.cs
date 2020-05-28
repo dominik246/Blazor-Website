@@ -1,9 +1,9 @@
 ﻿using System.Numerics;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary
+namespace AlgorithmLibrary.Algorithms
 {
-    public interface IAStarSearchAlgorithm
+    public interface IDijkstraAlgorithm
     {
         Task GetAsync(Vector2 startCoord, Vector2 finishCoord);
     }
