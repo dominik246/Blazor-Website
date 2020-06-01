@@ -1,4 +1,4 @@
-﻿.main_div {
+﻿.grid_div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,15 +6,90 @@
     min-width: 100vw;
 }
 
-    .main_div .container_div {
+    .grid_div .container_div {
         float: left;
     }
 
-        .main_div .container_div .grid_unit {
-            background-color: blue;
-            height: 30vh;
-            width: 20vw;
-            border: 5px solid grey;
-            
-            
+        .grid_div .container_div .grid_unit {
+            background-color: white;
+            height: 3vh;
+            width: 2vw;
+            border: .7px solid grey;
+            -webkit-box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
+            -moz-box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
+            box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
         }
+
+.taskbar_div {
+    background-color: midnightblue;
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0 5px 0;
+}
+
+    /* Dropdown Button */
+    .taskbar_div .button_base {
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 1vw;
+        padding: 0.8vh;
+    }
+        .taskbar_div .button_base.algorithm {
+            background-color: midnightblue;
+            border: none;
+        }
+        /* Dropdown button on hover & focus */
+            .taskbar_div .button_base.algorithm:hover, .button_base.algorithm:focus {
+                background-color: #2980B9;
+            }
+
+        .taskbar_div .button_base.visualize {
+            background-color: forestgreen;
+            border: groove;
+            border-radius: 5px;
+        }
+
+            .taskbar_div .button_base.visualize:focus {
+                color: black;
+                background-color: red;
+                border: groove;
+                border-radius: 5px;
+            }
+
+/* The container <div> - needed to position the dropdown content */
+.algorithm_menu {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd
+        }
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}

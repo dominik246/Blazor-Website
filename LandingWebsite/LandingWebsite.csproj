@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Toolbelt.Blazor.HeadElement.ServerPrerendering" Version="1.2.0-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AlgorithmLibrary\AlgorithmLibrary.csproj" />
   </ItemGroup>
 
