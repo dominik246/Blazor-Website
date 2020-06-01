@@ -17,3 +17,5 @@ window.onclick = function (event) {
         }
     }
 }
+
+//TODO: push to AlgorithmPage.razor/code

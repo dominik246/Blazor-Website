@@ -8,7 +8,7 @@
 <div>
     <div class="taskbar_div">
         <div>
-            <button onclick="DropDownMenuFunc()" class="button_base algorithm">Algorithms</button>
+            <button onclick="DropDownMenuFunc()" class="base algorithm">Algorithms</button>
             <div id="myDropdown" class="dropdown-content">
                 @foreach (string s in AlgorithmList)
                 {
@@ -17,7 +17,10 @@
             </div>
         </div>
 
-        <button @onclick="Visualize()" class="button_base visualize">Visualize!</button>
+        <button @onclick="Visualize()" class="base visualize">Visualize!</button>
+
+        <a class="base home" href="/">Home</a>
+
     </div>
 
     <div class="grid_div">

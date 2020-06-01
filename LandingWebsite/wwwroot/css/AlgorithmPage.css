@@ -31,29 +31,34 @@
 }
 
     /* Dropdown Button */
-    .taskbar_div .button_base {
+    .taskbar_div .base {
         color: white;
         font-size: 16px;
         cursor: pointer;
         margin-right: 1vw;
         padding: 0.8vh;
     }
-        .taskbar_div .button_base.algorithm {
+        .taskbar_div .base.home {
+            position: absolute;
+            right: 0px;
+        }
+
+        .taskbar_div .base.algorithm {
             background-color: midnightblue;
             border: none;
         }
         /* Dropdown button on hover & focus */
-            .taskbar_div .button_base.algorithm:hover, .button_base.algorithm:focus {
+            .taskbar_div .base.algorithm:hover, .base.algorithm:focus {
                 background-color: #2980B9;
             }
 
-        .taskbar_div .button_base.visualize {
+        .taskbar_div .base.visualize {
             background-color: forestgreen;
             border: groove;
             border-radius: 5px;
         }
 
-            .taskbar_div .button_base.visualize:focus {
+            .taskbar_div .base.visualize:focus {
                 color: black;
                 background-color: red;
                 border: groove;
