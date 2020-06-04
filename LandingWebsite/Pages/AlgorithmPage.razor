@@ -8,7 +8,7 @@
 <div>
     <div class="taskbar_div">
         <div>
-            <button onclick="DropDownMenuFunc()" class="base algorithm">Algorithms</button>
+            <button onclick="DropDownMenuFunc()" class="base_button algorithm">Algorithms</button>
             <div id="myDropdown" class="dropdown-content">
                 @foreach (string s in AlgorithmList)
                 {
@@ -17,10 +17,27 @@
             </div>
         </div>
 
-        <button @onclick="Visualize()" class="base visualize">Visualize!</button>
+        <button @onclick="() => Visualize()" class="base_button visualize">Visualize!</button>
 
-        <a class="base home" href="/">Home</a>
+        <div class="base_button clearGrid" onclick="ClearGrid()">Clear Grid</div>
 
+        <a class="base_button home" href="/">Home</a>
+
+    </div>
+
+    <div class="options_div">
+        <div class="base_option start">
+            <input type="checkbox" class="checkbox" id="startCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Start
+        </div>
+        <div class="base_option finish">
+            <input type="checkbox" class="checkbox" id="finishCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Finish
+        </div>
+        <div class="base_option wall">
+            <input type="checkbox" class="checkbox" id="wallCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Wall
+        </div>        
+        @*<div class="base_option checkpoint">
+            <input type="checkbox" class="checkbox" id="checkpointCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Test4
+        </div>*@    
     </div>
 
     <div class="grid_div">
@@ -30,19 +47,19 @@
             <div class="container_div">
                 @for (int j = 0; j < 25; j++)
                 {
-                    //TODO: to read https://www.html5rocks.com/en/tutorials/dnd/basics/
-                    <div class="grid_unit">
+
+                    <div class="grid_unit" id="@(Counter++)" onclick="UnitClicked()">
                     </div>
                 }
             </div>
         }
-
-
     </div>
 </div>
 
 
 @code {
+    public int Counter { get; set; }
+
     public string Title { get; set; } = "Shortest Path";
 
     public List<string> AlgorithmList { get; set; } = new List<string>()
@@ -53,31 +70,14 @@
         "Algorithm Algorithm"
     };
 
-    public Vector2 Coord { get; set; } = new Vector2(3, 3);
-
     public List<List<IBasicNodeModel>> Graph { get; set; }
-
-    private bool finishPresent;
-    private bool startPresent;
-
-
-    private async Task LoadedPage()
-    {
-        await RenderGrid();
-    }
-
     private async Task RenderGrid()
     {
-        Graph = await _createGraph.GetAsync((int)Coord.X, (int)Coord.Y);
+        Graph = await _createGraph.GetAsync(24, 48);
     }
 
-    private async Task OnGridChange()
+    private async Task Visualize()
     {
 
-    }
-
-    private EventCallback Visualize()
-    {
-        return new EventCallback();
     }
 }
