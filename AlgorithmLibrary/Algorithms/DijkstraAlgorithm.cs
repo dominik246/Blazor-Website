@@ -16,13 +16,16 @@ namespace AlgorithmLibrary.Algorithms
         private readonly IGetAllNodesHelper _getNodes;
         private readonly ISortNodesByDistanceHelper _sortNodes;
         private readonly IUpdateUnvisitedNodesHelper _updateGraph;
+        private readonly CreateUnitHelper _unitHelper;
 
-        public DijkstraAlgorithm(ICreateGraphHelper createGraph, IGetAllNodesHelper getNodes, ISortNodesByDistanceHelper sortNodes, IUpdateUnvisitedNodesHelper updateGraph)
+        public DijkstraAlgorithm(ICreateGraphHelper createGraph, IGetAllNodesHelper getNodes, 
+            ISortNodesByDistanceHelper sortNodes, IUpdateUnvisitedNodesHelper updateGraph, CreateUnitHelper unitHelper)
         {
             _createGraph = createGraph;
             _getNodes = getNodes;
             _sortNodes = sortNodes;
             _updateGraph = updateGraph;
+            _unitHelper = unitHelper;
         }
 
         /// <summary>
@@ -32,31 +35,9 @@ namespace AlgorithmLibrary.Algorithms
         /// <param name="finishCoord"></param>
         /// <param name="graph"></param>
         /// <returns>Returns a graph with an assigned distance value to every node.</returns>
-        private async Task<List<List<IBasicNodeModel>>> CalculateAsync(Vector2 startCoord, Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
+        private async Task<List<List<IBasicNodeModel>>> CalculateAsync(List<List<IBasicNodeModel>> graph)
         {
-            const int width = 25;
-            const int height = 48;
-
-            graph = await _createGraph.GetAsync(width, height);
-
             List<IBasicNodeModel> visitedNodesInOrder = new List<IBasicNodeModel>();
-
-            IBasicNodeModel startNode = new BasicNodeModel
-            {
-                Distance = 0,
-                CoordX = (int)startCoord.X,
-                CoordY = (int)startCoord.Y,
-                NodeType = UnitType.StartNode
-            };
-
-            IBasicNodeModel finishNode = new BasicNodeModel
-            {
-                CoordX = (int)finishCoord.X,
-                CoordY = (int)finishCoord.Y,
-                NodeType = UnitType.FinishNode
-            };
-
-            graph.Define(new IBasicNodeModel[] { startNode, finishNode });
 
             List<IBasicNodeModel> unvisitedNodes = await _getNodes.GetAsync(graph);
 
@@ -130,24 +111,15 @@ namespace AlgorithmLibrary.Algorithms
         {
             List<List<IBasicNodeModel>> graph = new List<List<IBasicNodeModel>>();
 
-            Vector2 startCoord = arr[0][0].ConvertToVector2();
-            Vector2 finishCoord = arr[1][0].ConvertToVector2();
-            //List<Vector2> walls = new List<Vector2>();
+            const int width = 25;
+            const int height = 48;
 
-            //foreach(JsonElement element in arr[2].EnumerateArray())
-            //{
-            //    Vector2 v2 = element.ConvertToVector2();
-            //    walls.Add(v2);
-            //}
+            graph = await _createGraph.GetAsync(width, height);
+            await _unitHelper.FillAsync(graph, arr);
 
-            graph = await CalculateAsync(startCoord, finishCoord, graph);
+            graph = await CalculateAsync(graph);
 
-            return await ShortestPathAsync(finishCoord, graph);
-
-            //foreach (var node in shortestPathList)
-            //{
-            //    Console.WriteLine($"{node.CoordX}, {node.CoordY}");
-            //}
+            return await ShortestPathAsync(arr[0][1].ConvertToVector2(), graph);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AlgorithmLibrary.Models;
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AlgorithmLibrary.Extensions
 {
@@ -11,9 +12,15 @@ namespace AlgorithmLibrary.Extensions
         /// </summary>
         /// <param name="graph"></param>
         /// <param name="node"></param>
-        public static void Define(this List<List<IBasicNodeModel>> graph, IBasicNodeModel node)
+        public static async Task DefineAsync(this List<List<IBasicNodeModel>> graph, List<List<IBasicNodeModel>> nodeList)
         {
-            graph[node.CoordY][node.CoordX] = node;
+            await Task.Run(async() =>
+            {
+                foreach(List<IBasicNodeModel> subList in nodeList)
+                {
+                    await graph.DefineAsync(subList);
+                }
+            });
         }
 
         /// <summary>
@@ -21,12 +28,15 @@ namespace AlgorithmLibrary.Extensions
         /// </summary>
         /// <param name="graph"></param>
         /// <param name="nodes"></param>
-        public static void Define(this List<List<IBasicNodeModel>> graph, IBasicNodeModel[] nodes)
+        public static async Task DefineAsync(this List<List<IBasicNodeModel>> graph, List<IBasicNodeModel> nodes)
         {
-            foreach (var node in nodes)
+            await Task.Run(() =>
             {
-                graph[node.CoordY][node.CoordX] = node;
-            }
+                foreach (var node in nodes)
+                {
+                    graph[node.CoordY][node.CoordX] = node;
+                }
+            });
         }
     }
 }

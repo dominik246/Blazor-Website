@@ -1,4 +1,5 @@
 using AlgorithmLibrary.Algorithms;
+using AlgorithmLibrary.Extensions;
 using AlgorithmLibrary.Helpers;
 
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,8 @@ namespace LandingWebsite
                     .AddSingleton<ISortNodesByDistanceHelper, SortNodesByDistanceHelper>()
                     .AddSingleton<IGetNeighborsHelper, GetNeighborsHelper>()
                     .AddSingleton<IUpdateUnvisitedNodesHelper, UpdateUnvisitedNodesHelper>()
-                    .AddSingleton<IDijkstraAlgorithm, DijkstraAlgorithm>();
+                    .AddSingleton<IDijkstraAlgorithm, DijkstraAlgorithm>()
+                    .AddSingleton<CreateUnitHelper>();
             services.AddHeadElementHelper();
         }
 

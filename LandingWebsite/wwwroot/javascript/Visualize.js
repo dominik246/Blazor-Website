@@ -1,16 +1,16 @@
 ﻿function GetGrid() {
     let grid = document.getElementsByClassName("grid_unit");
-    let output = [[], [], []];
+    let output = [[], []];
 
     for (let item of grid) {
         if (window.getComputedStyle(document.getElementById(item.id)).getPropertyValue("--unitType") === "startUnit") {
             output[0].push(item.id);
         }
         if (window.getComputedStyle(document.getElementById(item.id)).getPropertyValue("--unitType") === "finishUnit") {
-            output[1].push(item.id);
+            output[0].push(item.id);
         }
         if (window.getComputedStyle(document.getElementById(item.id)).getPropertyValue("--unitType") === "wallUnit") {
-            output[2].push(item.id);
+            output[1].push(item.id);
         }
     }
     return output;
