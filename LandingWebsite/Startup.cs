@@ -1,3 +1,4 @@
+using AlgorithmLibrary.Algorithms;
 using AlgorithmLibrary.Helpers;
 
 using Microsoft.AspNetCore.Builder;
@@ -25,7 +26,12 @@ namespace LandingWebsite
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<ICreateGraphHelper, CreateGraphHelper>();
+            services.AddSingleton<ICreateGraphHelper, CreateGraphHelper>()
+                    .AddSingleton<IGetAllNodesHelper, GetAllNodesHelper>()
+                    .AddSingleton<ISortNodesByDistanceHelper, SortNodesByDistanceHelper>()
+                    .AddSingleton<IGetNeighborsHelper, GetNeighborsHelper>()
+                    .AddSingleton<IUpdateUnvisitedNodesHelper, UpdateUnvisitedNodesHelper>()
+                    .AddSingleton<IDijkstraAlgorithm, DijkstraAlgorithm>();
             services.AddHeadElementHelper();
         }
 

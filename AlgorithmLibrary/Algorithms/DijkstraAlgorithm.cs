@@ -5,6 +5,7 @@ using AlgorithmLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AlgorithmLibrary.Algorithms
@@ -33,10 +34,8 @@ namespace AlgorithmLibrary.Algorithms
         /// <returns>Returns a graph with an assigned distance value to every node.</returns>
         private async Task<List<List<IBasicNodeModel>>> CalculateAsync(Vector2 startCoord, Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
         {
-            //TODO: bind with website so that it's dynamic
-            // starts with 0
-            const int width = 3;
-            const int height = 3;
+            const int width = 25;
+            const int height = 48;
 
             graph = await _createGraph.GetAsync(width, height);
 
@@ -92,10 +91,10 @@ namespace AlgorithmLibrary.Algorithms
         /// <param name="finishCoord"></param>
         /// <param name="graph"></param>
         /// <returns>Returns the shortest path from the start node to the finish node.</returns>
-        private async Task<List<IBasicNodeModel>> ShortestPathAsync(Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
+        private async Task<int[][]> ShortestPathAsync(Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
         {
             List<IBasicNodeModel> nodesInShortestPathOrder = new List<IBasicNodeModel>();
-            var currentNode = graph[(int)finishCoord.Y][(int)finishCoord.X];
+            IBasicNodeModel currentNode = graph[(int)finishCoord.Y][(int)finishCoord.X];
 
             await Task.Run(() =>
             {
@@ -110,7 +109,15 @@ namespace AlgorithmLibrary.Algorithms
                 }
             });
             nodesInShortestPathOrder.Reverse();
-            return nodesInShortestPathOrder;
+
+            List<int[]> result = new List<int[]>();
+
+            foreach(IBasicNodeModel item in nodesInShortestPathOrder)
+            {
+                result.Add(new int[] { item.CoordX, item.CoordY });
+            }
+
+            return result.ToArray();
         }
 
         /// <summary>
@@ -119,18 +126,28 @@ namespace AlgorithmLibrary.Algorithms
         /// <param name="startCoord"></param>
         /// <param name="finishCoord"></param>
         /// <returns>Returns the shortest path.</returns>
-        public async Task GetAsync(Vector2 startCoord, Vector2 finishCoord)
+        public async Task<int[][]> GetAsync(JsonElement arr)
         {
             List<List<IBasicNodeModel>> graph = new List<List<IBasicNodeModel>>();
 
+            Vector2 startCoord = arr[0][0].ConvertToVector2();
+            Vector2 finishCoord = arr[1][0].ConvertToVector2();
+            //List<Vector2> walls = new List<Vector2>();
+
+            //foreach(JsonElement element in arr[2].EnumerateArray())
+            //{
+            //    Vector2 v2 = element.ConvertToVector2();
+            //    walls.Add(v2);
+            //}
+
             graph = await CalculateAsync(startCoord, finishCoord, graph);
 
-            var shortestPathList = await ShortestPathAsync(finishCoord, graph);
+            return await ShortestPathAsync(finishCoord, graph);
 
-            foreach (var node in shortestPathList)
-            {
-                Console.WriteLine($"{node.CoordX}, {node.CoordY}");
-            }
+            //foreach (var node in shortestPathList)
+            //{
+            //    Console.WriteLine($"{node.CoordX}, {node.CoordY}");
+            //}
         }
     }
 }

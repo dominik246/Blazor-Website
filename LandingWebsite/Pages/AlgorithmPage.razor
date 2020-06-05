@@ -2,6 +2,7 @@
 
 @inject ICreateGraphHelper _createGraph;
 @inject IJSRuntime JSRuntime;
+@inject IDijkstraAlgorithm _dijkstra;
 
 <title>@Title</title>
 
@@ -41,14 +42,13 @@
     </div>
 
     <div class="grid_div">
-
         @for (int i = 0; i < 49; i++)
         {
             <div class="container_div">
                 @for (int j = 0; j < 25; j++)
                 {
 
-                    <div class="grid_unit" id="@(Counter++)" onclick="UnitClicked()">
+                    <div class="grid_unit" id="@($"{j}, {i}")" onclick="UnitClicked()">
                     </div>
                 }
             </div>
@@ -58,26 +58,22 @@
 
 
 @code {
-    public int Counter { get; set; }
-
     public string Title { get; set; } = "Shortest Path";
 
     public List<string> AlgorithmList { get; set; } = new List<string>()
-{
+    {
         "Dijkstra's Algorithm",
         "A* Algorithm",
         "Something Something",
         "Algorithm Algorithm"
     };
 
-    public List<List<IBasicNodeModel>> Graph { get; set; }
-    private async Task RenderGrid()
-    {
-        Graph = await _createGraph.GetAsync(24, 48);
-    }
-
     private async Task Visualize()
     {
+        System.Text.Json.JsonElement grid = await JSRuntime.InvokeAsync<System.Text.Json.JsonElement>("GetGrid");
 
+        int[][] result = await _dijkstra.GetAsync(grid);
+
+        await JSRuntime.InvokeVoidAsync("Visualize", new object[] { result });
     }
 }

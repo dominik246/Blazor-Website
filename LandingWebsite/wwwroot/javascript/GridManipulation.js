@@ -20,12 +20,10 @@ function UnitClicked() {
         if (tmp.getPropertyValue("--unitType") == "startUnit" && start.checked) {
             startExists = true;
             return;
-            //console.log(startExists);
         }
         if (tmp.getPropertyValue("--unitType") == "finishUnit" && finish.checked) {
             finishExists = true;
             return;
-            //console.log(finishExists);
         }
     }
 
