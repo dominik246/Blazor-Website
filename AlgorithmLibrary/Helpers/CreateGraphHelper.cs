@@ -13,9 +13,12 @@ namespace AlgorithmLibrary.Helpers
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns>Returns a 2D list.</returns>
-        public async Task<List<List<IBasicNodeModel>>> GetAsync(int width, int height)
+        public async Task<List<List<IBasicNodeModel>>> GetAsync()
         {
             List<List<IBasicNodeModel>> graph = new List<List<IBasicNodeModel>>();
+
+            const int width = 25;
+            const int height = 48;
 
             await Task.Run(() =>
             {

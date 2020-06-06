@@ -7,6 +7,6 @@ namespace AlgorithmLibrary.Helpers
 {
     public interface ICreateGraphHelper
     {
-        Task<List<List<IBasicNodeModel>>> GetAsync(int width, int height);
+        Task<List<List<IBasicNodeModel>>> GetAsync();
     }
 }

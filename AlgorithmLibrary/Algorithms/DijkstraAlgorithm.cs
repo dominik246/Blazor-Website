@@ -12,19 +12,19 @@ namespace AlgorithmLibrary.Algorithms
 {
     public class DijkstraAlgorithm : IDijkstraAlgorithm
     {
-        private readonly ICreateGraphHelper _createGraph;
+        
         private readonly IGetAllNodesHelper _getNodes;
         private readonly ISortNodesByDistanceHelper _sortNodes;
         private readonly IUpdateUnvisitedNodesHelper _updateGraph;
+        private readonly ICreateGraphHelper _createGraph;
         private readonly CreateUnitHelper _unitHelper;
-
-        public DijkstraAlgorithm(ICreateGraphHelper createGraph, IGetAllNodesHelper getNodes, 
-            ISortNodesByDistanceHelper sortNodes, IUpdateUnvisitedNodesHelper updateGraph, CreateUnitHelper unitHelper)
+        public DijkstraAlgorithm(IGetAllNodesHelper getNodes, ICreateGraphHelper createGraph, CreateUnitHelper unitHelper,
+            ISortNodesByDistanceHelper sortNodes, IUpdateUnvisitedNodesHelper updateGraph)
         {
-            _createGraph = createGraph;
             _getNodes = getNodes;
             _sortNodes = sortNodes;
             _updateGraph = updateGraph;
+            _createGraph = createGraph;
             _unitHelper = unitHelper;
         }
 
@@ -109,12 +109,7 @@ namespace AlgorithmLibrary.Algorithms
         /// <returns>Returns the shortest path.</returns>
         public async Task<int[][]> GetAsync(JsonElement arr)
         {
-            List<List<IBasicNodeModel>> graph = new List<List<IBasicNodeModel>>();
-
-            const int width = 25;
-            const int height = 48;
-
-            graph = await _createGraph.GetAsync(width, height);
+            List<List<IBasicNodeModel>> graph = await _createGraph.GetAsync();
             await _unitHelper.FillAsync(graph, arr);
 
             graph = await CalculateAsync(graph);

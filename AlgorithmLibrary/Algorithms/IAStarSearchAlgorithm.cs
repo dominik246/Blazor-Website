@@ -1,10 +1,11 @@
 ﻿using System.Numerics;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AlgorithmLibrary.Algorithms
 {
     public interface IAStarSearchAlgorithm
     {
-        Task GetAsync(Vector2 startCoord, Vector2 finishCoord);
+        Task<int[][]> GetAsync(JsonElement arr);
     }
 }

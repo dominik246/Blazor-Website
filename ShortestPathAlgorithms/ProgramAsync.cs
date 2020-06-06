@@ -15,7 +15,6 @@ namespace ShortestPathAlgorithms
         {
             try
             {
-                //TODO: implement a picker based on the input.
                 var services = BuildServiceProvider();
                 await services.GetRequiredService<IDijkstraAlgorithm>().GetAsync(new Vector2(0, 0), new Vector2(2, 2));
             }

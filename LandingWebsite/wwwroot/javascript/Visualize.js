@@ -17,7 +17,15 @@
 }
 
 function Visualize(result) {
-    console.log(result);
+
+    let grid = document.getElementsByClassName("grid_unit");
+
+    for (let unit of grid) {
+        if (unit.style.getPropertyValue("background-color") === "blue") {
+            unit.style.setProperty("background-color", "white");
+            unit.style.setProperty("--unitType", "basicUnit");
+        }
+    }
 
     result.forEach((item) => {
         let id = item[0] + ", " + item[1];
@@ -27,7 +35,5 @@ function Visualize(result) {
 
             document.getElementById(id).style.setProperty("background-color", "blue");
         }
-
     });
-
 }

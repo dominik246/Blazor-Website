@@ -1,4 +1,5 @@
-﻿using AlgorithmLibrary.Models;
+﻿using AlgorithmLibrary.Extensions;
+using AlgorithmLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Extensions
+namespace AlgorithmLibrary.Helpers
 {
     public class CreateUnitHelper
     {

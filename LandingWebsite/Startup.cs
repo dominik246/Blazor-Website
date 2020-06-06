@@ -33,7 +33,9 @@ namespace LandingWebsite
                     .AddSingleton<IGetNeighborsHelper, GetNeighborsHelper>()
                     .AddSingleton<IUpdateUnvisitedNodesHelper, UpdateUnvisitedNodesHelper>()
                     .AddSingleton<IDijkstraAlgorithm, DijkstraAlgorithm>()
-                    .AddSingleton<CreateUnitHelper>();
+                    .AddSingleton<IAStarSearchAlgorithm, AStarSearchAlgorithm>()
+                    .AddSingleton<CreateUnitHelper>()
+                    .AddSingleton<AlgorithmSelector>();
             services.AddHeadElementHelper();
         }
 

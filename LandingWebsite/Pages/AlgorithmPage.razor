@@ -1,8 +1,8 @@
 ﻿@page "/algorithms"
 
-@inject ICreateGraphHelper _createGraph;
 @inject IJSRuntime JSRuntime;
-@inject IDijkstraAlgorithm _dijkstra;
+@inject AlgorithmSelector Algorithm;
+@inject NavigationManager MyNavigationManager;
 
 <title>@Title</title>
 
@@ -13,7 +13,7 @@
             <div id="myDropdown" class="dropdown-content">
                 @foreach (string s in AlgorithmList)
                 {
-                    <a href="algorithms#@(s.ToSafeUrl())">@s</a>
+                    <a href="algorithms#@(s.ToSafeUrl())" @onclick="() => GetAlgorithm(s)">@s</a>
                 }
             </div>
         </div>
@@ -28,17 +28,17 @@
 
     <div class="options_div">
         <div class="base_option start">
-            <input type="checkbox" class="checkbox" id="startCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Start
+            <input type="checkbox" class="checkbox" id="startCheck" onclick="CheckBoxCheck(this)" name="checkbox" /> Start
         </div>
         <div class="base_option finish">
-            <input type="checkbox" class="checkbox" id="finishCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Finish
+            <input type="checkbox" class="checkbox" id="finishCheck" onclick="CheckBoxCheck(this)" name="checkbox" /> Finish
         </div>
         <div class="base_option wall">
-            <input type="checkbox" class="checkbox" id="wallCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Wall
-        </div>        
+            <input type="checkbox" class="checkbox" id="wallCheck" onclick="CheckBoxCheck(this)" name="checkbox" /> Wall
+        </div>
         @*<div class="base_option checkpoint">
-            <input type="checkbox" class="checkbox" id="checkpointCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Test4
-        </div>*@    
+                <input type="checkbox" class="checkbox" id="checkpointCheck" onclick="CheckBoxCheck(this)" name="checkbox"/> Test4
+            </div>*@
     </div>
 
     <div class="grid_div">
@@ -58,10 +58,12 @@
 
 
 @code {
-    public string Title { get; set; } = "Shortest Path";
+    private string Title { get; set; } = "Shortest Path";
 
-    public List<string> AlgorithmList { get; set; } = new List<string>()
-    {
+    private string AlgorithmName { get; set; } = "Dijkstra's Algorithm";
+
+    private List<string> AlgorithmList { get; set; } = new List<string>()
+{
         "Dijkstra's Algorithm",
         "A* Algorithm",
         "Something Something",
@@ -70,10 +72,14 @@
 
     private async Task Visualize()
     {
-        System.Text.Json.JsonElement grid = await JSRuntime.InvokeAsync<System.Text.Json.JsonElement>("GetGrid");
+        JsonElement grid = await JSRuntime.InvokeAsync<JsonElement>("GetGrid");
 
-        int[][] result = await _dijkstra.GetAsync(grid);
-
+        int[][] result = await Algorithm.RunAsync(AlgorithmName, grid);
         await JSRuntime.InvokeVoidAsync("Visualize", new object[] { result });
+    }
+
+    private void GetAlgorithm(string s)
+    {
+        AlgorithmName = s;
     }
 }
