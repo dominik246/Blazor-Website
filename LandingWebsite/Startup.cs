@@ -1,7 +1,7 @@
 using AlgorithmLibrary.Algorithms;
 using AlgorithmLibrary.Extensions;
 using AlgorithmLibrary.Helpers;
-
+using Blazored.Toast;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +37,7 @@ namespace LandingWebsite
                     .AddSingleton<CreateUnitHelper>()
                     .AddSingleton<AlgorithmSelector>();
             services.AddHeadElementHelper();
+            services.AddBlazoredToast();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
