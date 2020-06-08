@@ -19,7 +19,7 @@
             <div id="dropDownButton" class="dropdown-content">
                 @foreach (string s in AlgorithmList)
                 {
-                    <a @onclick="() => GetAlgorithm(s)">@s</a> 
+                    <a @onclick="() => GetAlgorithm(s)">@s</a>
                 }
             </div>
         </div>
@@ -28,7 +28,10 @@
 
         <div class="base_button clearGrid" @onclick="() => ClearGrid()">Clear Grid</div>
 
-        <a class="base_button home" href="/">Home</a>
+        <div class="base_button home">
+            <a class="base_button" href="https://github.com/dominik246/Blazor-Website">Github</a>
+            <a class="base_button" href="/">Home</a>
+        </div>
 
     </div>
 
