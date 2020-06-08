@@ -8,6 +8,6 @@ namespace AlgorithmLibrary.Algorithms
 {
     public interface IDijkstraAlgorithm
     {
-        Task<int[][]> GetAsync(JsonElement arr);
+        Task<int[][]> Compute(JsonElement arr);
     }
 }

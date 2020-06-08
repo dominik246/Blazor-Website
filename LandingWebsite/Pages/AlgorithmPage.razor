@@ -47,7 +47,8 @@
                 @for (int j = 0; j < 25; j++)
                 {
                     string tempId = $"{j}, {i}";
-                    <div class="grid_unit" id="@tempId" @onclick="() => UnitClicked(tempId)"></div>
+                    <div class="grid_unit" id="@tempId" @onclick="() => UnitClicked(tempId)"></div> 
+                    // !!! if it's a checkpoint, add a value indicating what's it's place in the list !!!
                 }
             </div>
         }
@@ -78,10 +79,17 @@
 
     private async Task Visualize()
     {
-        JsonElement grid = await JSRuntime.InvokeAsync<JsonElement>("GetGrid");
+        bool validGraph = await JSRuntime.InvokeAsync<bool>("CheckIfValidGraph");
 
-        int[][] result = await Algorithm.RunAsync(AlgorithmName, grid);
-        await JSRuntime.InvokeVoidAsync("Visualize", new object[] { result });
+        if (validGraph)
+        {
+            JsonElement grid = await JSRuntime.InvokeAsync<JsonElement>("GetGrid");
+
+            int[][] result = await Algorithm.RunAsync(AlgorithmName, grid);
+            await JSRuntime.InvokeVoidAsync("Visualize", new object[] { result });
+        }
+        else
+            Toast.ShowError("Graph is not valid. Check if you have both a Start unit and a Finish Unit", "Error");
     }
 
     private void GetAlgorithm(string s)

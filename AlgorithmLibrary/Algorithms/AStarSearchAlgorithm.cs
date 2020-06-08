@@ -3,6 +3,7 @@ using AlgorithmLibrary.Helpers;
 using AlgorithmLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -19,14 +20,32 @@ namespace AlgorithmLibrary.Algorithms
             _unitHelper = unitHelper;
         }
 
-        public async Task<int[][]> GetAsync(JsonElement arr)
+        public async Task<int[][]> Compute(JsonElement arr)
+        {
+            if (arr[3].GetArrayLength() == 0)
+            {
+                return (await GetAsync(arr[0][0], arr[1][0], arr)).ToArray();
+            }
+
+            List<JsonElement> checkpoints = arr[3].EnumerateArray().ToList();
+
+            List<int[]> result = new List<int[]>();
+            foreach (JsonElement item in checkpoints)
+            {
+                result.AddRange(await GetAsync(checkpoints[0], checkpoints[1], arr));
+            }
+
+            return result.ToArray();
+        }
+
+        private async Task<List<int[]>> GetAsync(JsonElement start, JsonElement finish, JsonElement arr)
         {
             List<List<IBasicNodeModel>> graph = await _createGraph.GetAsync();
-            await _unitHelper.FillAsync(graph, arr);
+            await _unitHelper.FillAsync(graph, start, finish, arr);
 
             graph = await CalculateAsync(graph);
 
-            return await ShortestPathAsync(arr[0][1].ConvertToVector2(), graph);
+            return await ShortestPathAsync(finish.ConvertToVector2(), graph);
         }
 
         private async Task<List<List<IBasicNodeModel>>> CalculateAsync(List<List<IBasicNodeModel>> graph)
@@ -34,7 +53,7 @@ namespace AlgorithmLibrary.Algorithms
             return null;
         }
 
-        private async Task<int[][]> ShortestPathAsync(Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
+        private async Task<List<int[]>> ShortestPathAsync(Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
         {
             return null;
         }

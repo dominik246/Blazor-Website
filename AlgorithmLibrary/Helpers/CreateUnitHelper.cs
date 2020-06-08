@@ -11,21 +11,21 @@ namespace AlgorithmLibrary.Helpers
 {
     public class CreateUnitHelper
     {
-        public async Task FillAsync(List<List<IBasicNodeModel>> graph, JsonElement arr)
+        public async Task FillAsync(List<List<IBasicNodeModel>> graph, JsonElement start, JsonElement finish, JsonElement arr)
         {
             List<List<IBasicNodeModel>> list = new List<List<IBasicNodeModel>>();
 
             list.Add(new List<IBasicNodeModel>());
-            Vector2 startCoord = arr[0][0].ConvertToVector2();
+            Vector2 startCoord = start.ConvertToVector2();
             list[0].Add(CreateUnit(coord: startCoord, distance: 0, type: UnitType.StartNode, previousNodeCoord: new Vector2(-1, -1)));
 
-            Vector2 finishNode = arr[0][1].ConvertToVector2();
+            Vector2 finishNode = finish.ConvertToVector2();
             list[0].Add(CreateUnit(coord: finishNode, type: UnitType.FinishNode));
 
             list.Add(new List<IBasicNodeModel>());
             await Task.Run(() =>
             {
-                foreach (JsonElement coords in arr[1].EnumerateArray())
+                foreach (JsonElement coords in arr[2].EnumerateArray())
                 {
                     list[1].Add(CreateUnit(coord: coords.ConvertToVector2(), visited: true, type: UnitType.WallNode));
                 }

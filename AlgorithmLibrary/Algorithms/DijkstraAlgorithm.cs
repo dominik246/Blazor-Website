@@ -4,7 +4,10 @@ using AlgorithmLibrary.Models;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Numerics;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -72,7 +75,7 @@ namespace AlgorithmLibrary.Algorithms
         /// <param name="finishCoord"></param>
         /// <param name="graph"></param>
         /// <returns>Returns the shortest path from the start node to the finish node.</returns>
-        private async Task<int[][]> ShortestPathAsync(Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
+        private async Task<List<int[]>> ShortestPathAsync(Vector2 finishCoord, List<List<IBasicNodeModel>> graph)
         {
             List<IBasicNodeModel> nodesInShortestPathOrder = new List<IBasicNodeModel>();
             IBasicNodeModel currentNode = graph[(int)finishCoord.Y][(int)finishCoord.X];
@@ -98,7 +101,7 @@ namespace AlgorithmLibrary.Algorithms
                 result.Add(new int[] { item.CoordX, item.CoordY });
             }
 
-            return result.ToArray();
+            return result;
         }
 
         /// <summary>
@@ -107,14 +110,41 @@ namespace AlgorithmLibrary.Algorithms
         /// <param name="startCoord"></param>
         /// <param name="finishCoord"></param>
         /// <returns>Returns the shortest path.</returns>
-        public async Task<int[][]> GetAsync(JsonElement arr)
+        private async Task<List<int[]>> GetAsync(JsonElement start, JsonElement finish, JsonElement arr)
         {
             List<List<IBasicNodeModel>> graph = await _createGraph.GetAsync();
-            await _unitHelper.FillAsync(graph, arr);
+            await _unitHelper.FillAsync(graph, start, finish, arr);
 
             graph = await CalculateAsync(graph);
 
-            return await ShortestPathAsync(arr[0][1].ConvertToVector2(), graph);
+            return await ShortestPathAsync(finish.ConvertToVector2(), graph);
+        }
+
+        public async Task<int[][]> Compute(JsonElement arr)
+        {
+            if (arr[3].GetArrayLength() == 2)
+            {
+                return (await GetAsync(arr[0][0], arr[1][0], arr)).ToArray();
+            }
+
+            List<JsonElement> checkpoints = arr[3].EnumerateArray().ToList();
+
+            List<int[]> result = new List<int[]>();
+            for(int i = checkpoints.Count - 1; i >= 0; i--)
+            {
+                var test1 = checkpoints[i];
+                var test2 = checkpoints[i - 1];
+                var test3 = await GetAsync(test1, test2, arr);
+                result.AddRange(test3);
+                checkpoints.RemoveAt(i);
+
+                if (i - 1 == 0) // if we're at Start
+                {
+                    break;
+                }
+            }
+
+            return result.ToArray();
         }
     }
 }

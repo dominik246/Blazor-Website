@@ -5,6 +5,8 @@ let nextOption = "";
 let startExists = false;
 let finishExists = false;
 let checkPointExists = false;
+let checkpointIndex = 0;
+let checkpoints = [];
 
 function UnitClicked(stringId) {
     let unitString = [];
@@ -55,6 +57,17 @@ function UnitClicked(stringId) {
             unitString.push("Click Visualize when you're ready.");
             unitString.push("success");
         }
+
+        checkpoints.push([unit.id, 0]);
+
+        // refresh their values
+        RefreshCheckpoints();
+    }
+
+    if (unit.style.getPropertyValue("--unitType") === "checkpointUnit" && nextOption === "Remove") {
+        let index = checkpoints.findIndex((item) => item[0] === unit.id);
+        checkpoints.splice(index, 1); // removing the unit from the arr by index of itself
+        RefreshCheckpoints();
     }
 
     unit.style.setProperty("background-color", backgroundColor);
@@ -63,6 +76,7 @@ function UnitClicked(stringId) {
     if (nextOption === "Remove") {
         unitString.push("");
         unitString.push("");
+        unit.innerHTML = "";
 
         return unitString;
     }
@@ -117,10 +131,28 @@ function ClearGrid() {
     for (let unit of grid) {
         unit.style.setProperty("background-color", "white");
         unit.style.setProperty("--unitType", "basicUnit");
+        unit.innerHTML = "";
     }
     startExists = false;
     finishExists = false;
     checkPointExists = false;
+    checkpoints = [];
 
     return "Grid Cleared!";
+}
+
+function CheckIfValidGraph() {
+    if (startExists && finishExists)
+        return true;
+    else
+        return false;
+}
+
+function RefreshCheckpoints() {
+    checkpoints.forEach((item) => {
+        let index = checkpoints.indexOf(item);
+        item[1] = index;
+        document.getElementById(item[0]).innerHTML = (item[1] + 1).toString();
+        checkpoints.sort(function (a, b) { return parseInt(document.getElementById(a[1])) - parseInt(document.getElementById(b[1])) });
+    });
 }

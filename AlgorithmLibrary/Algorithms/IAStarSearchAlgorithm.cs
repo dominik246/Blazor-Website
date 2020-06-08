@@ -6,6 +6,6 @@ namespace AlgorithmLibrary.Algorithms
 {
     public interface IAStarSearchAlgorithm
     {
-        Task<int[][]> GetAsync(JsonElement arr);
+        Task<int[][]> Compute(JsonElement arr);
     }
 }

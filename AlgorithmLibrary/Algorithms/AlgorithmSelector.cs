@@ -30,7 +30,7 @@ namespace AlgorithmLibrary.Algorithms
                 //case "Algorithm Algorithm":
                 //    break;
                 default: // this is Dijkstra's Algo
-                    result = await _dijkstra.GetAsync(grid);
+                    result = await _dijkstra.Compute(grid);
                     break;
             }
             return result;
