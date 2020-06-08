@@ -15,11 +15,11 @@
 <div>
     <div class="taskbar_div">
         <div>
-            <button onclick="DropDownMenuFunc()" class="base_button algorithm">Algorithms</button>
+            <button @onclick="() => DropDownMenu()" class="base_button algorithm">Algorithms</button>
             <div id="dropDownButton" class="dropdown-content">
                 @foreach (string s in AlgorithmList)
                 {
-                    <a href="algorithms#@(s.ToSafeUrl())" @onclick="() => GetAlgorithm(s)">@s</a>
+                    <a @onclick="() => GetAlgorithm(s)">@s</a> 
                 }
             </div>
         </div>
@@ -46,7 +46,8 @@
             <div class="container_div">
                 @for (int j = 0; j < 25; j++)
                 {
-                    <div class="grid_unit" id="@($"{j}, {i}")" onclick="UnitClicked(this)"></div>
+                    string tempId = $"{j}, {i}";
+                    <div class="grid_unit" id="@tempId" @onclick="() => UnitClicked(tempId)"></div>
                 }
             </div>
         }
@@ -57,8 +58,6 @@
     private string Title { get; set; } = "Shortest Path";
 
     private string AlgorithmName { get; set; } = "Dijkstra's Algorithm";
-
-    private ElementReference reference;
 
     private List<string> AlgorithmList { get; set; } = new List<string>()
 {
@@ -102,6 +101,35 @@
 
         Toast.ShowSuccess(toastText[0]);
     }
+
+    private async Task UnitClicked(string id)
+    {
+        string[] response = await JSRuntime.InvokeAsync<string[]>("UnitClicked", id);
+
+        if (!response.Any())
+        {
+            return;
+        }
+
+
+        switch (response[1])
+        {
+            case "error":
+                Toast.ShowError(response[0]);
+                break;
+            case "success":
+                Toast.ShowSuccess(response[0]);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private async Task DropDownMenu()
+    {
+        await JSRuntime.InvokeVoidAsync("DropDownMenuFunc");
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

@@ -1,33 +1,68 @@
 ﻿let backgroundColor = "white";
-let unitType = "basicUnit";
+let newType = "basicUnit";
+let wallCheckedOnce = false;
+let nextOption = "";
 let startExists = false;
 let finishExists = false;
 
-function UnitClicked(unit) {
+function UnitClicked(stringId) {
     let unitString = [];
+    let unit = document.getElementById(stringId);
+    let type = unit.style.getPropertyValue("--unitType");
 
-    if ((startExists && unitType === "startUnit") || (finishExists && unitType === "finishUnit")) {
-        unitString.push("This already exists!");
-        unitString.push("error");
-        return;
+    if (nextOption === "") {
+        unitString.push("");
+        unitString.push("");
+        return unitString;
     }
-    if (!startExists && unitType === "startUnit") {
-        unitString.push("Now click the Finish Button.");
-        unitString.push("success");
-        startExists = true;
+
+    if (newType === "startUnit") {
+        if (startExists) {
+            unitString.push("This already exists! You can have only one Start unit.");
+            unitString.push("error");
+            return unitString;
+        }
+        else
+            startExists = true;
     }
-    if (!finishExists && unitType === "finishUnit") {
-        unitString.push("Now click the Wall Button.");
-        unitString.push("success");
-        finishExists = true;
+    else if (newType === "finishUnit") {
+        if (finishExists) {
+            unitString.push("This already exists! You can have only one Finish unit.");
+            unitString.push("error");
+            return unitString;
+        }
+        else
+            finishExists = true;
     }
-    if (unitType === "wallUnit") {
-        unitString.push("Click Visualize when you're ready.");
-        unitString.push("success");
+    else if (newType === "wallUnit") {
+        if (wallCheckedOnce) {
+            unitString.push("");
+            unitString.push("");
+        }
+        else {
+            wallCheckedOnce = true;
+            unitString.push("Click Visualize when you're ready.");
+            unitString.push("success");
+        }
     }
-    
+    else if (newType === "checkpointUnit") {
+        //WIP
+    }
+
     unit.style.setProperty("background-color", backgroundColor);
-    unit.style.setProperty("--unitType", unitType);
+    unit.style.setProperty("--unitType", newType);
+
+    if (nextOption === "Remove") {
+        unitString.push("");
+        unitString.push("");
+
+        return unitString;
+    }
+
+    unitString.push("Now click the " + nextOption + " button.");
+    unitString.push("success");
+
+    return unitString;
 }
 
 function OptionsButton(option) {
@@ -36,19 +71,25 @@ function OptionsButton(option) {
     switch (option) {
         case "start":
             backgroundColor = "yellow";
-            unitType = "startUnit";
+            newType = "startUnit";
+            nextOption = "Finish";
             break;
         case "finish":
             backgroundColor = "purple";
-            unitType = "finishUnit";
+            newType = "finishUnit";
+            nextOption = "Wall";
             break;
         case "wall":
             backgroundColor = "black";
-            unitType = "wallUnit";
+            newType = "wallUnit";
+            nextOption = "Visualize";
             break;
+        case "remove":
+        case "checkpoint":
         default:
             backgroundColor = "white";
-            unitType = "basicUnit";
+            newType = "basicUnit";
+            nextOption = "Remove";
             break;
     }
 
@@ -65,7 +106,6 @@ function ClearGrid() {
         unit.style.setProperty("background-color", "white");
         unit.style.setProperty("--unitType", "basicUnit");
     }
-
     startExists = false;
     finishExists = false;
 

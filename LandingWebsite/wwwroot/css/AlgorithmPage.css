@@ -78,16 +78,18 @@
 }
 
 .options_div {
-    background-color: yellow;
+    /*    background-color: yellow;*/
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1vh 0 1vh 0vh;
+    z-index: 9999;
 }
 
     .options_div .base_option {
         background-color: blue;
         float: left;
-        margin: 1vh 0 1vh 2vh;
+        margin: 1vh 2vw 1vh 0vh;
     }
 
         .options_div .base_option.start {
