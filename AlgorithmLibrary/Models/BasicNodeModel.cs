@@ -3,11 +3,6 @@
 namespace AlgorithmLibrary.Models
 {
     /// <summary>
-    /// Enum containing all the possible unit types that can occur in the graph.
-    /// </summary>
-    //public enum UnitType { BasicNode = 0, StartNode, FinishNode, WallNode, CheckPoint }
-
-    /// <summary>
     /// Constructor for the basic node in the graph.
     /// </summary>
     public class BasicNodeModel : IBasicNodeModel

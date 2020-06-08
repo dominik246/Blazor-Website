@@ -2,7 +2,7 @@
 
 namespace AlgorithmLibrary.Models
 {
-    public enum UnitType { BasicNode = 0, StartNode, FinishNode, WallNode, CheckPoint }
+    public enum UnitType { BasicNode, StartNode, FinishNode, WallNode, CheckPoint }
 
     public interface IBasicNodeModel
     {

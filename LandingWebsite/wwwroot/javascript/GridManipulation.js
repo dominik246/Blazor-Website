@@ -4,11 +4,11 @@ let wallCheckedOnce = false;
 let nextOption = "";
 let startExists = false;
 let finishExists = false;
+let checkPointExists = false;
 
 function UnitClicked(stringId) {
     let unitString = [];
     let unit = document.getElementById(stringId);
-    let type = unit.style.getPropertyValue("--unitType");
 
     if (nextOption === "") {
         unitString.push("");
@@ -46,7 +46,15 @@ function UnitClicked(stringId) {
         }
     }
     else if (newType === "checkpointUnit") {
-        //WIP
+        if (checkPointExists) {
+            unitString.push("");
+            unitString.push("");
+        }
+        else {
+            checkPointExists = true;
+            unitString.push("Click Visualize when you're ready.");
+            unitString.push("success");
+        }
     }
 
     unit.style.setProperty("background-color", backgroundColor);
@@ -84,8 +92,12 @@ function OptionsButton(option) {
             newType = "wallUnit";
             nextOption = "Visualize";
             break;
-        case "remove":
         case "checkpoint":
+            backgroundColor = "green";
+            newType = "checkpointUnit";
+            nextOption = "Visualize";
+            break;
+        case "remove":
         default:
             backgroundColor = "white";
             newType = "basicUnit";
@@ -108,6 +120,7 @@ function ClearGrid() {
     }
     startExists = false;
     finishExists = false;
+    checkPointExists = false;
 
     return "Grid Cleared!";
 }

@@ -1,5 +1,5 @@
 ﻿:root {
-    --unitType: basicUnit; /*can be: "basicUnit", "wallUnit", "startUnit", "finishUnit", "test4"*/
+    --unitType: basicUnit; /*can be: "basicUnit", "wallUnit", "startUnit", "finishUnit", "checkpointUnit"*/
 }
 
 .grid_div {

@@ -37,7 +37,7 @@
         <input type="button" class="base_button finish" @onclick="() => OptionsButton(Options[1])" value="Finish" />
         <input type="button" class="base_button wall" @onclick="() => OptionsButton(Options[2])" value="Wall" />
         <input type="button" class="base_button remove" @onclick="() => OptionsButton(Options[3])" value="Remove" />
-        @*<input type="button" class="base_button checkpoint" @onclick="() => OptionsButton(Options[4])" />*@
+        <input type="button" class="base_button checkpoint" @onclick="() => OptionsButton(Options[4])" value="CheckPoint" />
     </div>
 
     <div class="grid_div">
@@ -63,8 +63,8 @@
 {
         "Dijkstra's Algorithm",
         "A* Algorithm",
-        "Something Something",
-        "Algorithm Algorithm"
+        "Placeholder 1",
+        "Placeholder 2"
     };
 
     private List<string> Options { get; set; } = new List<string>()
