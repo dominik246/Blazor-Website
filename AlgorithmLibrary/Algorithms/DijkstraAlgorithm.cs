@@ -122,7 +122,7 @@ namespace AlgorithmLibrary.Algorithms
 
         public async Task<int[][]> Compute(JsonElement arr)
         {
-            if (arr[3].GetArrayLength() == 2)
+            if (arr[3].EnumerateArray().Count(item => !string.IsNullOrEmpty(item.GetString())) == 2)
             {
                 return (await GetAsync(arr[0][0], arr[1][0], arr)).ToArray();
             }
@@ -132,10 +132,7 @@ namespace AlgorithmLibrary.Algorithms
             List<int[]> result = new List<int[]>();
             for(int i = checkpoints.Count - 1; i >= 0; i--)
             {
-                var test1 = checkpoints[i];
-                var test2 = checkpoints[i - 1];
-                var test3 = await GetAsync(test1, test2, arr);
-                result.AddRange(test3);
+                result.AddRange(await GetAsync(checkpoints[i], checkpoints[i - 1], arr));
                 checkpoints.RemoveAt(i);
 
                 if (i - 1 == 0) // if we're at Start

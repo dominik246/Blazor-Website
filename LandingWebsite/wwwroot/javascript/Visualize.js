@@ -2,7 +2,6 @@
     let grid = document.getElementsByClassName("grid_unit");
     let output = [[], [], [], []];
     let tmpArr1 = [];
-    let tmpArr2 = [];
     let finishId = "";
     let startId = "";
 
@@ -36,11 +35,13 @@
     });
     
     output[3].push(startId); // we have to ensure that Start is the first item in the list
-
-    tmpArr1.sort(function (a, b) { return parseInt(document.getElementById(a).innerHTML) - parseInt(document.getElementById(b).innerHTML) });
-    tmpArr1.forEach((item) => output[3].push(item));
+    if (tmpArr1.length !== 0) {
+        tmpArr1.sort(function (a, b) { return parseInt(document.getElementById(a).innerHTML) - parseInt(document.getElementById(b).innerHTML) });
+        tmpArr1.forEach((item) => output[3].push(item));
+    } 
 
     output[3].push(finishId); // we have to ensure that Finish is the last item in the list
+    console.log(output[3]);
     return output;
 }
 
