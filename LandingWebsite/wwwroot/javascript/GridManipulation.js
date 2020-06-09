@@ -18,6 +18,12 @@ function UnitClicked(stringId) {
         return unitString;
     }
 
+    if (nextOption !== "Remove" && unit.style.getPropertyValue("--unitType") !== "") {
+        unitString.push("");
+        unitString.push("");
+        return unitString;
+    }
+
     if (newType === "startUnit") {
         if (startExists) {
             unitString.push("This already exists! You can have only one Start unit.");
@@ -60,8 +66,10 @@ function UnitClicked(stringId) {
 
         checkpoints.push([unit.id, 0]);
 
-        // refresh their values
-        RefreshCheckpoints();
+        // refresh values of only checkpoints (no point of having values to walls or start and finish)
+        if (unit.style.getPropertyValue("--unitType") === "checkpointUnit") {
+            RefreshCheckpoints();
+        }
     }
 
     if (unit.style.getPropertyValue("--unitType") === "checkpointUnit" && nextOption === "Remove") {

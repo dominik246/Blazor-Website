@@ -129,16 +129,13 @@ namespace AlgorithmLibrary.Algorithms
 
             List<JsonElement> checkpoints = arr[3].EnumerateArray().ToList();
 
+            checkpoints.RemoveAll(item => string.IsNullOrEmpty(item.GetString()));
+
             List<int[]> result = new List<int[]>();
-            for(int i = checkpoints.Count - 1; i >= 0; i--)
+            for(int i = checkpoints.Count - 1; i >= 1; i--)
             {
                 result.AddRange(await GetAsync(checkpoints[i], checkpoints[i - 1], arr));
                 checkpoints.RemoveAt(i);
-
-                if (i - 1 == 0) // if we're at Start
-                {
-                    break;
-                }
             }
 
             return result.ToArray();
