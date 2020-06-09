@@ -41,7 +41,6 @@
     } 
 
     output[3].push(finishId); // we have to ensure that Finish is the last item in the list
-    console.log(output[3]);
     return output;
 }
 

@@ -1,9 +1,64 @@
 ﻿@page "/sorts"
 
+@inject IJSRuntime JSRuntime;
+@using Microsoft.JSInterop;
+
 <title>Sorting Algorithms</title>
 
-<h3>SortPage</h3>
+<div>
+    <div class="taskbar_div">
+        <div>
+            <button @onclick="() => DropDownMenu()" class="base_button algorithm">Algorithms</button>
+            <div id="dropDownButton" class="dropdown-content">
+                @foreach (string s in AlgorithmList)
+                {
+                    <a @onclick="() => GetAlgorithm(s)">@s</a>
+                }
+            </div>
+        </div>
+
+        <button @onclick="() => Sort()" class="base_button visualize">Sort!</button>
+
+        <div class="base_button clearGrid" @onclick="() => RePopulate()">Clear Grid</div>
+
+        <div class="base_button home">
+            <a class="base_button" href="https://github.com/dominik246/Blazor-Website">Github</a>
+            <a class="base_button" href="/">Home</a>
+        </div>
+
+    </div>
+</div>
 
 @code {
     public string Title { get; set; } = "Sorting Algorithms";
+
+    private string AlgorithmName { get; set; } = "Selection Sort";
+
+    private List<string> AlgorithmList { get; set; } = new List<string>()
+{
+        "Selection Sort",
+        "Placeholder 0",
+        "Placeholder 1",
+        "Placeholder 2"
+    };
+
+    private void GetAlgorithm(string s)
+    {
+        AlgorithmName = s;
+    }
+
+    private async Task DropDownMenu()
+    {
+        await JSRuntime.InvokeVoidAsync("DropDownMenuFunc");
+    }
+
+    private async Task RePopulate()
+    {
+
+    }
+
+    private async Task Sort()
+    {
+
+    }
 }

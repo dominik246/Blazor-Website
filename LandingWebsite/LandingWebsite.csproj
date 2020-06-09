@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AlgorithmLibrary\AlgorithmLibrary.csproj" />
+    <ProjectReference Include="..\AlgorithmLibrary\ShortestPathLibrary.csproj" />
   </ItemGroup>
 
 </Project>

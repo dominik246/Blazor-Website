@@ -1,6 +1,5 @@
-using AlgorithmLibrary.Algorithms;
-using AlgorithmLibrary.Extensions;
-using AlgorithmLibrary.Helpers;
+using ShortestPathLibrary.Algorithms;
+using ShortestPathLibrary.Helpers;
 using Blazored.Toast;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

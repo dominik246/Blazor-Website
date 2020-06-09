@@ -3,7 +3,7 @@
 @inject IJSRuntime JSRuntime;
 @inject AlgorithmSelector Algorithm;
 @inject IToastService Toast;
-@using Blazored.Toast.Configuration
+@using Blazored.Toast.Configuration;
 @using Microsoft.JSInterop;
 
 <title>@Title</title>
@@ -63,15 +63,15 @@
     private string AlgorithmName { get; set; } = "Dijkstra's Algorithm";
 
     private List<string> AlgorithmList { get; set; } = new List<string>()
-{
+    {
         "Dijkstra's Algorithm",
-        "A* Algorithm",
+        "Placeholder 0",
         "Placeholder 1",
         "Placeholder 2"
     };
 
     private List<string> Options { get; set; } = new List<string>()
-{
+    {
         "start",
         "finish",
         "wall",

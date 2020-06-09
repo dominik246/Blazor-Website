@@ -1,10 +1,10 @@
-﻿using AlgorithmLibrary.Models;
+﻿using ShortestPathLibrary.Models;
 
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Helpers
+namespace ShortestPathLibrary.Helpers
 {
     public class UpdateUnvisitedNodesHelper : IUpdateUnvisitedNodesHelper
     {

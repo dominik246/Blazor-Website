@@ -1,5 +1,5 @@
-﻿using AlgorithmLibrary.Extensions;
-using AlgorithmLibrary.Models;
+﻿using ShortestPathLibrary.Extensions;
+using ShortestPathLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Helpers
+namespace ShortestPathLibrary.Helpers
 {
     public class CreateUnitHelper
     {

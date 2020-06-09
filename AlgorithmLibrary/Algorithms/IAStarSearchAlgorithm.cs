@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Algorithms
+namespace ShortestPathLibrary.Algorithms
 {
     public interface IAStarSearchAlgorithm
     {

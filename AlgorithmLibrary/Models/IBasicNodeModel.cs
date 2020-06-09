@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace AlgorithmLibrary.Models
+namespace ShortestPathLibrary.Models
 {
     public enum UnitType { BasicNode, StartNode, FinishNode, WallNode, CheckPoint }
 

@@ -1,11 +1,11 @@
-﻿using AlgorithmLibrary.Helpers;
+﻿using ShortestPathLibrary.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Algorithms
+namespace ShortestPathLibrary.Algorithms
 {
     public class AlgorithmSelector
     {

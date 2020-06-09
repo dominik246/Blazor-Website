@@ -1,6 +1,6 @@
-﻿using AlgorithmLibrary.Extensions;
-using AlgorithmLibrary.Helpers;
-using AlgorithmLibrary.Models;
+﻿using ShortestPathLibrary.Extensions;
+using ShortestPathLibrary.Helpers;
+using ShortestPathLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Numerics;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Algorithms
+namespace ShortestPathLibrary.Algorithms
 {
     public class AStarSearchAlgorithm : IAStarSearchAlgorithm
     {

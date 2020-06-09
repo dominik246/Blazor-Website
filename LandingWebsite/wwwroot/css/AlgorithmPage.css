@@ -24,9 +24,9 @@
             box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
             --unitType: basicUnit;
         }
-            /*.grid_div .container_div .grid_unit:hover {
+            .grid_div .container_div .grid_unit:hover {
                 background-color: lightblue;
-            }*/ /*causes masive memory increase*/
+            }
 
 .taskbar_div {
     background-color: midnightblue;

@@ -1,10 +1,10 @@
-﻿using AlgorithmLibrary.Models;
+﻿using ShortestPathLibrary.Models;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Algorithms
+namespace ShortestPathLibrary.Algorithms
 {
     public interface IDijkstraAlgorithm
     {

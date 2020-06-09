@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace AlgorithmLibrary.Models
+namespace ShortestPathLibrary.Models
 {
     /// <summary>
     /// Constructor for the basic node in the graph.

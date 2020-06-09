@@ -11,6 +11,7 @@ let checkpoints = [];
 function UnitClicked(stringId) {
     let unitString = [];
     let unit = document.getElementById(stringId);
+    let type = window.getComputedStyle(unit).getPropertyValue("--unitType").replace(/ /g, '');
 
     if (nextOption === "") {
         unitString.push("");
@@ -18,7 +19,7 @@ function UnitClicked(stringId) {
         return unitString;
     }
 
-    if (nextOption !== "Remove" && unit.style.getPropertyValue("--unitType") !== "") {
+    if (nextOption !== "Remove" && type !== "basicUnit") {
         unitString.push("");
         unitString.push("");
         return unitString;
@@ -67,12 +68,12 @@ function UnitClicked(stringId) {
         checkpoints.push([unit.id, 0]);
 
         // refresh values of only checkpoints (no point of having values to walls or start and finish)
-        if (unit.style.getPropertyValue("--unitType") === "checkpointUnit") {
+        if (type === "checkpointUnit") {
             RefreshCheckpoints();
         }
     }
 
-    if (unit.style.getPropertyValue("--unitType") === "checkpointUnit" && nextOption === "Remove") {
+    if (type === "checkpointUnit" && nextOption === "Remove") {
         let index = checkpoints.findIndex((item) => item[0] === unit.id);
         checkpoints.splice(index, 1); // removing the unit from the arr by index of itself
         RefreshCheckpoints();
@@ -85,6 +86,13 @@ function UnitClicked(stringId) {
         unitString.push("");
         unitString.push("");
         unit.innerHTML = "";
+
+        if (type === "startUnit") {
+            startExists = false;
+        }
+        if (type === "finishUnit") {
+            finishExists = false;
+        }
 
         return unitString;
     }

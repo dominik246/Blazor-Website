@@ -4,7 +4,7 @@ using System.Numerics;
 using System.Text;
 using System.Text.Json;
 
-namespace AlgorithmLibrary.Extensions
+namespace ShortestPathLibrary.Extensions
 {
     public static class JsonElementToVector2
     {

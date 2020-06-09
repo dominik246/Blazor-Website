@@ -1,9 +1,9 @@
-﻿using AlgorithmLibrary.Models;
+﻿using ShortestPathLibrary.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AlgorithmLibrary.Extensions
+namespace ShortestPathLibrary.Extensions
 {
     public static class DefineListExtension
     {
