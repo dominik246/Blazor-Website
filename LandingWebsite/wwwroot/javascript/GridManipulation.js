@@ -19,7 +19,7 @@ function UnitClicked(stringId) {
         return unitString;
     }
 
-    if (nextOption !== "Remove" && unit.style.getPropertyValue("--unitType") !== "") {
+    if (nextOption !== "Remove" && window.getComputedStyle(unit).getPropertyValue("--unitType").replace(/ /g, '') !== "basicUnit") {
         unitString.push("");
         unitString.push("");
         return unitString;
