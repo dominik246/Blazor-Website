@@ -50,7 +50,7 @@
                 @for (int j = 0; j < 25; j++)
                 {
                     string id = $"{j}, {i}";
-                    <div class="grid_unit" id="@id" @onmousemove="(args) => OnMouseMove(args, id)" @onclick="() => UnitClicked(id)" />
+                    <div class="grid_unit" id="@id" @onmouseover="(args) => OnMouseMove(args, id)" @onclick="() => UnitClicked(id)" />
                 }
             </div>
         }
