@@ -1,4 +1,4 @@
-﻿let backgroundColor = "white";
+let backgroundColor = "white";
 let newType = "basicUnit";
 let wallCheckedOnce = false;
 let nextOption = "";
@@ -19,7 +19,7 @@ function UnitClicked(stringId) {
         return unitString;
     }
 
-    if (nextOption !== "Remove" && type !== "basicUnit") {
+    if (nextOption !== "Remove" && unit.style.getPropertyValue("--unitType") !== "") {
         unitString.push("");
         unitString.push("");
         return unitString;
