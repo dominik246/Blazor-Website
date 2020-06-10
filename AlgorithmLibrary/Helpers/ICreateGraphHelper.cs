@@ -7,6 +7,6 @@ namespace ShortestPathLibrary.Helpers
 {
     public interface ICreateGraphHelper
     {
-        Task<List<List<IBasicNodeModel>>> GetAsync();
+        Task<List<List<IBasicNodeModel>>> GetAsync(int x, int y);
     }
 }

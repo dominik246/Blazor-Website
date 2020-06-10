@@ -1,6 +1,6 @@
 ﻿function GetGrid() {
     let grid = document.getElementsByClassName("grid_unit");
-    let output = [[], [], [], []];
+    let output = [[], [], [], [], []];
     let tmpArr1 = [];
     let finishId = "";
     let startId = "";
@@ -41,6 +41,10 @@
     } 
 
     output[3].push(finishId); // we have to ensure that Finish is the last item in the list
+
+    // we're providing the grid length and hight in the output
+    output[4].push(document.getElementsByClassName("grid_div")[0].children.length);
+    output[4].push(document.getElementsByClassName("grid_div")[0].children[0].children.length);
     return output;
 }
 

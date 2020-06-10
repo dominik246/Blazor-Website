@@ -13,19 +13,16 @@ namespace ShortestPathLibrary.Helpers
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns>Returns a 2D list.</returns>
-        public async Task<List<List<IBasicNodeModel>>> GetAsync()
+        public async Task<List<List<IBasicNodeModel>>> GetAsync(int x, int y)
         {
             List<List<IBasicNodeModel>> graph = new List<List<IBasicNodeModel>>();
 
-            const int width = 25;
-            const int height = 48;
-
             await Task.Run(() =>
             {
-                for (int i = 0; i < height; i++)
+                for (int i = 0; i < x; i++)
                 {
                     graph.Add(new List<IBasicNodeModel>());
-                    for (int j = 0; j < width; j++)
+                    for (int j = 0; j < y; j++)
                     {
                         graph[i].Add(new BasicNodeModel
                         {

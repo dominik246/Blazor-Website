@@ -112,7 +112,7 @@ namespace ShortestPathLibrary.Algorithms
         /// <returns>Returns the shortest path.</returns>
         private async Task<List<int[]>> GetAsync(JsonElement start, JsonElement finish, JsonElement arr)
         {
-            List<List<IBasicNodeModel>> graph = await _createGraph.GetAsync();
+            List<List<IBasicNodeModel>> graph = await _createGraph.GetAsync(arr[4][0].GetInt32(), arr[4][1].GetInt32());
             await _unitHelper.FillAsync(graph, start, finish, arr);
 
             graph = await CalculateAsync(graph);
