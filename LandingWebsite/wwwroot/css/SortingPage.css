@@ -1,0 +1,24 @@
+﻿:root {
+    --positionInGrid: 0;
+}
+
+.sorting_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+    .sorting_box .unit {
+        width: 2vw;
+        height: 1vh;
+        border: .7px solid white;
+        -webkit-box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
+        -moz-box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
+        box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(182, 255, 0);
+    }
+        

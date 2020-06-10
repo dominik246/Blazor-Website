@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Toolbelt.Blazor.Extensions.DependencyInjection;
+using SortingAlgorithmLibrary.Algorithms;
 
 namespace LandingWebsite
 {
@@ -34,7 +35,10 @@ namespace LandingWebsite
                     .AddSingleton<IDijkstraAlgorithm, DijkstraAlgorithm>()
                     .AddSingleton<IAStarSearchAlgorithm, AStarSearchAlgorithm>()
                     .AddSingleton<CreateUnitHelper>()
-                    .AddSingleton<AlgorithmSelector>();
+                    .AddSingleton<AlgorithmSelector>()
+                    
+                    .AddSingleton<SelectionSort>()
+                    .AddSingleton<SelectSortingAlgorithm>();
             services.AddHeadElementHelper();
             services.AddBlazoredToast();
         }
