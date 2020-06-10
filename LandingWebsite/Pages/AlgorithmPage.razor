@@ -15,7 +15,8 @@
 <div>
     <div class="taskbar_div">
         <div>
-            <button @onclick="() => DropDownMenu()" class="base_button algorithm">Algorithms</button>
+            @{ string tmp = "dropDownButton"; }
+            <button @onclick="() => DropDownMenu(tmp)" class="base_button algorithm">Algorithms</button>
             <div id="dropDownButton" class="dropdown-content">
                 @foreach (string s in AlgorithmList)
                 {
@@ -135,9 +136,9 @@
         }
     }
 
-    private async Task DropDownMenu()
+    private async Task DropDownMenu(string s)
     {
-        await JSRuntime.InvokeVoidAsync("DropDownMenuFunc");
+        await JSRuntime.InvokeVoidAsync("DropDownMenuFunc", s);
     }
 
     private async Task OnMouseMove(MouseEventArgs args, string id)

@@ -51,7 +51,7 @@ function Sort(arr) {
         div.style.setProperty("--positionInGrid", index.toString());
         div.style.height = height.toString() + "px";
         div.id = index.toString();
-        div.innerHTML = arr[i][1];
+        //div.innerHTML = arr[i][1];
         div.style.setProperty("background-color", hslColor);
         container.appendChild(div);
     }
