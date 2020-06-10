@@ -23,7 +23,7 @@ namespace SortingAlgorithmLibrary.Algorithms
             {
                 case "":
                 default:
-                    result = (await _selection.SortAsync(arr)).ConvertAll(item => item.ConvertToArray()).ToArray();
+                    result = (await _selection.SortAsync(arr)).ToArray();
                     break;
             }
             return result;

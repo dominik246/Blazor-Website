@@ -44,18 +44,7 @@
         <input type="button" class="base_button checkpoint" @onclick="() => OptionsButton(Options[4])" value="CheckPoint" />
     </div>
 
-    <div class="grid_div">
-        @*@for (int i = 0; i < 49; i++)
-            {
-                <div class="container_div">
-                    @for (int j = 0; j < 25; j++)
-                    {
-                        string id = $"{j}, {i}";
-                        <div class="grid_unit" id="@id" @onmouseover="(args) => OnMouseMove(args, id)" @onclick="() => UnitClicked(id)" />
-                    }
-                </div>
-            }*@
-    </div>
+    <div class="grid_div"></div>
 </div>
 
 @code {
@@ -123,7 +112,6 @@
             return;
         }
 
-
         switch (response[1])
         {
             case "error":
@@ -140,14 +128,6 @@
     private async Task DropDownMenu(string s)
     {
         await JSRuntime.InvokeVoidAsync("DropDownMenuFunc", s);
-    }
-
-    private async Task OnMouseMove(MouseEventArgs args, string id)
-    {
-        if (args.Buttons == 1)
-        {
-            await UnitClicked(id);
-        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
