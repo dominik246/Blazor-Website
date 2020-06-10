@@ -11,25 +11,51 @@ namespace SortingAlgorithmLibrary.Algorithms
 {
     public class SelectionSort
     {
-        public async Task<List<(int, double, string)>> SortAsync(JsonElement arr)
+        public async Task<List<(int, string, double, double[], string)>> SortAsync(JsonElement arr)
         {
             List<JsonElement> list = arr.EnumerateArray().ToList();
-            List<(int, double, string)> heights = list.ConvertAll(item => item.ConvertToTuple());
+            // arr.push() has to be [index, text, height, [h, s, v], sortName]
+            List<(int, string, double, double[], string)> heights = list.ConvertAll(item => item.ConvertToTuple());
             return await EvaluateAsync(heights);
         }
 
-        private async Task<List<(int, double, string)>> EvaluateAsync(List<(int, double, string)> list)
+        private async Task<List<(int, string, double, double[], string)>> EvaluateAsync(List<(int, string, double, double[], string)> list)
         {
             await Task.Run(() =>
             {
+                string temp = list[0].Item5;
+
                 for (int i = 0; i < list.Count; i++)
                 {
                     int jMin = i;
                     for (int j = i + 1; j < list.Count; j++)
                     {
-                        if (list[jMin].Item2 > list[j].Item2)
+                        switch (temp)
                         {
-                            jMin = j;
+                            case "By Height":
+                                if (list[jMin].Item3 > list[j].Item3)
+                                {
+                                    jMin = j;
+                                }
+                                break;
+                            case "By HSV Hue":
+                                if (list[jMin].Item4[0] > list[j].Item4[0])
+                                {
+                                    jMin = j;
+                                }
+                                break;
+                            case "By HSV Saturation":
+                                if (list[jMin].Item4[1] > list[j].Item4[1])
+                                {
+                                    jMin = j;
+                                }
+                                break;
+                            case "By HSV value":
+                                if (list[jMin].Item4[2] > list[j].Item4[2])
+                                {
+                                    jMin = j;
+                                }
+                                break;
                         }
                     }
                     if (jMin != i)

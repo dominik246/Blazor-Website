@@ -6,9 +6,9 @@ namespace SortingAlgorithmLibrary.Extensions
 {
     public static class TupleToArray
     {
-        public static object[] ConvertToArray(this (object, object, object) tuple)
+        public static object[] ConvertToArray(this (object, object, object, object, object) tuple)
         {
-            return new object[] { tuple.Item1, tuple.Item2, tuple.Item3 };
+            return new object[] { tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4, tuple.Item5 };
         }
     }
 }
