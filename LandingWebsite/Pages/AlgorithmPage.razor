@@ -45,16 +45,16 @@
     </div>
 
     <div class="grid_div">
-        @for (int i = 0; i < 49; i++)
-        {
-            <div class="container_div">
-                @for (int j = 0; j < 25; j++)
-                {
-                    string id = $"{j}, {i}";
-                    <div class="grid_unit" id="@id" @onmouseover="(args) => OnMouseMove(args, id)" @onclick="() => UnitClicked(id)" />
-                }
-            </div>
-        }
+        @*@for (int i = 0; i < 49; i++)
+            {
+                <div class="container_div">
+                    @for (int j = 0; j < 25; j++)
+                    {
+                        string id = $"{j}, {i}";
+                        <div class="grid_unit" id="@id" @onmouseover="(args) => OnMouseMove(args, id)" @onclick="() => UnitClicked(id)" />
+                    }
+                </div>
+            }*@
     </div>
 </div>
 
@@ -64,7 +64,7 @@
     private string AlgorithmName { get; set; } = "Dijkstra's Algorithm";
 
     private List<string> AlgorithmList { get; set; } = new List<string>()
-    {
+{
         "Dijkstra's Algorithm",
         "Placeholder 0",
         "Placeholder 1",
@@ -72,7 +72,7 @@
     };
 
     private List<string> Options { get; set; } = new List<string>()
-    {
+{
         "start",
         "finish",
         "wall",
@@ -113,7 +113,8 @@
         Toast.ShowSuccess(toastText[0]);
     }
 
-    private async Task UnitClicked(string id)
+    [JSInvokable]
+    public async Task UnitClicked(string id)
     {
         string[] response = await JSRuntime.InvokeAsync<string[]>("UnitClicked", id);
 
@@ -143,7 +144,7 @@
 
     private async Task OnMouseMove(MouseEventArgs args, string id)
     {
-        if(args.Buttons == 1)
+        if (args.Buttons == 1)
         {
             await UnitClicked(id);
         }
@@ -153,7 +154,10 @@
     {
         if (firstRender)
         {
+            var objRef = DotNetObjectReference.Create(this);
             await Task.Run(() => Toast.ShowSuccess("Press Start button when you're ready.", "Welcome!"));
+            await JSRuntime.InvokeVoidAsync("CreateGrid", objRef);
+
         }
     }
 }
