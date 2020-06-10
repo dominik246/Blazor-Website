@@ -11,9 +11,11 @@ namespace SortingAlgorithmLibrary.Algorithms
     public class SelectSortingAlgorithm
     {
         private readonly SelectionSort _selection;
-        public SelectSortingAlgorithm(SelectionSort selection)
+        private readonly InsertionSort _insertion;
+        public SelectSortingAlgorithm(SelectionSort selection, InsertionSort insertion)
         {
             _selection = selection;
+            _insertion = insertion;
         }
 
         public async Task<object[][]> Select(JsonElement arr, string algo)
@@ -21,7 +23,9 @@ namespace SortingAlgorithmLibrary.Algorithms
             object[][] result;
             switch (algo)
             {
-                case "":
+                case "Insertion Sort":
+                    result = (await _insertion.SortAsync(arr)).ToArray();
+                    break;
                 default:
                     result = (await _selection.SortAsync(arr)).ToArray();
                     break;
