@@ -11,15 +11,7 @@ namespace SortingAlgorithmLibrary.Algorithms
 {
     public class InsertionSort
     {
-        public async Task<List<object[]>> SortAsync(JsonElement arr)
-        {
-            List<JsonElement> list = arr.EnumerateArray().ToList();
-            // arr.push() has to be [index, text, height, sortName]
-            List<(int, string, double, string)> heights = list.ConvertAll(item => item.ConvertToTuple());
-            return await EvaluateAsync(heights);
-        }
-
-        private async Task<List<object[]>> EvaluateAsync(List<(int, string, double, string)> list)
+        public async Task<List<object[]>> SortAsync(List<(int, string, double, string)> list)
         {
             List<object[]> instructions = new List<object[]>();
             await Task.Run(() =>
@@ -38,7 +30,5 @@ namespace SortingAlgorithmLibrary.Algorithms
             });
             return instructions;
         }
-
-
     }
 }

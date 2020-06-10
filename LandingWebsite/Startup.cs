@@ -39,6 +39,7 @@ namespace LandingWebsite
                     
                     .AddSingleton<SelectionSort>()
                     .AddSingleton<InsertionSort>()
+                    .AddSingleton<HeapSort>()
                     .AddSingleton<SelectSortingAlgorithm>();
             services.AddHeadElementHelper();
             services.AddBlazoredToast();

@@ -61,12 +61,17 @@ function Visualize(result) {
 
     result.forEach((item) => {
         let id = item[0] + ", " + item[1];
+        let unit = document.getElementById(id);
 
-        if (document.getElementById(id).style.getPropertyValue("background-color") !== "yellow" && //start
-            document.getElementById(id).style.getPropertyValue("background-color") !== "purple" && // finish
-            document.getElementById(id).style.getPropertyValue("background-color") !== "green") {  // checkpoint
+        if (unit === null) {
+            return;
+        }
 
-            document.getElementById(id).style.setProperty("background-color", "blue");
+        if (unit.style.getPropertyValue("background-color") !== "yellow" && //start
+            unit.style.getPropertyValue("background-color") !== "purple" && // finish
+            unit.style.getPropertyValue("background-color") !== "green") {  // checkpoint
+
+            unit.style.setProperty("background-color", "blue");
         }
     });
 }

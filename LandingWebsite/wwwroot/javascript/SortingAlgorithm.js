@@ -37,6 +37,10 @@ async function Sort(arr) {
         let comparedElement = document.getElementById(arr[i][1]);
         let originalElement = document.getElementById(arr[i][0]);
 
+        if (comparedElement === null || originalElement === null) {
+            return;
+        }
+
         if (arr[i][2] === false) {
             await a(originalElement, comparedElement);
         }
