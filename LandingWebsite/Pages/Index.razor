@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+@inject IJSRuntime JSRuntime;
+
 <title>Landing Page</title>
 
 <div style="
@@ -26,12 +28,12 @@
             </div>
         </div>
         <div>
-            <div class="sub_box">
+            <div class="sub_box disabledBox">
                 <a class="box_item left" href="/">
                     Coming Soon
                 </a>
             </div>
-            <div class="sub_box">
+            <div class="sub_box disabledBox">
                 <a class="box_item left" href="/">
                     Coming Soon
                 </a>
@@ -39,3 +41,13 @@
         </div>
     </div>
 </div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("Disable");
+        }
+    }
+}
