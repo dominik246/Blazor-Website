@@ -91,16 +91,14 @@
         width: 35vw;
         height: 35vh;
         float: left;
-        overflow: hidden;
+        margin: 7.5vh 7.5vw 7.5vh 7.5vw;
     }
 
         .box .sub_box .box_item {
             font-size: 20px;
             line-height: 35vh;
-            transition: all 0ms;
             display: block;
             height: 100%;
-            z-index: 995;
             box-shadow: 0 3px 36px 0 rgba(0, 0, 0, 0.6);
             opacity: 0.7;
             color: #666;
@@ -108,6 +106,7 @@
             text-align: center;
             transition: all 0.2s;
             background-color: white;
+            overflow: hidden;
         }
 
             .box .sub_box .box_item:hover {
@@ -117,9 +116,9 @@
             }
 
 .left {
-    margin-right: 100px;
+    /*margin-right: 100px;*/
 }
 
 .right {
-    margin-left: 100px;
+    /*margin-left: 100px;*/
 }
