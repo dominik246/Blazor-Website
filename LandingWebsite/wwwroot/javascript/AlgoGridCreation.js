@@ -16,7 +16,7 @@
                     let unitDiv = document.createElement("div");
                     unitDiv.className = "grid_unit";
                     unitDiv.id = id;
-                    unitDiv.onmousedown = async function () { await OnMouseClick(objRef, id) };
+                    unitDiv.onmousedown = async function () { await OnMouseDown(objRef, id) };
                     unitDiv.onmouseover = async function (args) { await OnMouseOver(args, objRef, id) };
                     container.children[i].appendChild(unitDiv);
                 }
@@ -31,7 +31,6 @@ async function OnMouseOver(args, obj, id) {
     }
 }
 
-async function OnMouseClick(obj, id) {
-    console.log("helo");
+async function OnMouseDown(obj, id) {
     await obj.invokeMethodAsync("UnitClicked", id);
 }
