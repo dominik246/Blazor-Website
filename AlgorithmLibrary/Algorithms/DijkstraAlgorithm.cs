@@ -93,7 +93,6 @@ namespace ShortestPathLibrary.Algorithms
                     currentNode = graph[(int)currentNode.PreviousNodeCoord.Y][(int)currentNode.PreviousNodeCoord.X];
                 }
             });
-            nodesInShortestPathOrder.Reverse();
 
             List<int[]> result = new List<int[]>();
 

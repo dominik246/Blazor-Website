@@ -11,6 +11,8 @@ namespace ShortestPathLibrary.Helpers
 {
     public class CreateUnitHelper
     {
+        private Vector2 v2 = new Vector2(-1, -1);
+
         public async Task FillAsync(List<List<IBasicNodeModel>> graph, JsonElement start, JsonElement finish, JsonElement arr)
         {
             List<List<IBasicNodeModel>> list = new List<List<IBasicNodeModel>>();
@@ -35,7 +37,7 @@ namespace ShortestPathLibrary.Helpers
         }
 
         public IBasicNodeModel CreateUnit(Vector2 coord = default, bool visited = false, int distance = int.MaxValue,
-            UnitType type = UnitType.BasicNode, Vector2 previousNodeCoord = default)
+            UnitType type = UnitType.BasicNode, Vector2? previousNodeCoord = null)
         {
             return new BasicNodeModel
             {
@@ -44,7 +46,7 @@ namespace ShortestPathLibrary.Helpers
                 Visited = visited,
                 Distance = distance,
                 NodeType = type,
-                PreviousNodeCoord = previousNodeCoord
+                PreviousNodeCoord = previousNodeCoord ??= new Vector2(-1, -1)
             };
         }
     }
