@@ -84,9 +84,10 @@
             Toast.ShowError("Graph is not valid. Check if you have both a Start unit and a Finish Unit", "Error");
     }
 
-    private void GetAlgorithm(string s)
+    private Task GetAlgorithm(string s)
     {
         AlgorithmName = s;
+        return Task.CompletedTask;
     }
 
     private async Task ClearGrid()

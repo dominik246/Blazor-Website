@@ -122,12 +122,12 @@ namespace ShortestPathLibrary.Algorithms
 
         public async Task<int[][]> Compute(JsonElement arr)
         {
+            List<JsonElement> checkpoints = arr[3].EnumerateArray().ToList();
+
             if (arr[3].EnumerateArray().Count(item => !string.IsNullOrEmpty(item.GetString())) == 2)
             {
                 return (await GetAsync(arr[0][0], arr[1][0], arr)).ToArray();
             }
-
-            List<JsonElement> checkpoints = arr[3].EnumerateArray().ToList();
 
             checkpoints.RemoveAll(item => string.IsNullOrEmpty(item.GetString()));
 

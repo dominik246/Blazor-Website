@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="base_button clearGrid" onclick="GenerateSortingGrid()">Restart Grid</div>
+        <div class="base_button clearGrid" @onclick="() => GenerateSortingGrid()">Restart Grid</div>
 
         <div class="base_button home">
             <a class="base_button" href="https://github.com/dominik246/Blazor-Website">Github</a>
@@ -63,14 +63,16 @@
 
     private string SortName { get; set; } = "By Height";
 
-    private void GetAlgorithm(string s)
+    private Task GetAlgorithm(string s)
     {
         AlgorithmName = s;
+        return Task.CompletedTask;
     }
 
-    private void SortOrder(string s)
+    private Task SortOrder(string s)
     {
         SortName = s;
+        return Task.CompletedTask;
     }
 
     private async Task DropDownMenu(string s)
@@ -85,6 +87,11 @@
         object[][] arr = await sorting.Select(json, AlgorithmName);
 
         await JSRuntime.InvokeVoidAsync("Sort", new object[] { arr });
+    }
+
+    private async Task GenerateSortingGrid()
+    {
+        await JSRuntime.InvokeVoidAsync("GenerateSortingGrid");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
