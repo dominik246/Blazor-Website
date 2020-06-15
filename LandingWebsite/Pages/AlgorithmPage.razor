@@ -14,22 +14,25 @@
 
 <div>
     <div class="taskbar_div">
-        <div>
-            @{ string tmp = "dropDownButton"; }
-            <button @onclick="() => DropDownMenu(tmp)" class="base_button algorithm">Algorithms</button>
-            <div id="dropDownButton" class="dropdown-content">
-                @foreach (string s in AlgorithmList)
-                {
-                    <a @onclick="() => GetAlgorithm(s)">@s</a>
-                }
+        <div class="taskbar_div left"></div>
+        <div class="taskbar_div center">
+            <div>
+                @{ string tmp = "dropDownButton"; }
+                <button @onclick="() => DropDownMenu(tmp)" class="base_button algorithm">Algorithms</button>
+                <div id="dropDownButton" class="dropdown-content">
+                    @foreach (string s in AlgorithmList)
+                    {
+                        <a @onclick="() => GetAlgorithm(s)">@s</a>
+                    }
+                </div>
             </div>
+
+            <button @onclick="() => Visualize()" class="base_button visualize">Visualize!</button>
+
+            <div class="base_button clearGrid" @onclick="() => ClearGrid()">Clear Grid</div>
         </div>
 
-        <button @onclick="() => Visualize()" class="base_button visualize">Visualize!</button>
-
-        <div class="base_button clearGrid" @onclick="() => ClearGrid()">Clear Grid</div>
-
-        <div class="base_button home">
+        <div class="taskbar_div right">
             <a class="base_button" href="https://github.com/dominik246/Blazor-Website">Github</a>
             <a class="base_button" href="/">Home</a>
         </div>

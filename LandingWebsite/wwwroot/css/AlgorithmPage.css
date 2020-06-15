@@ -6,8 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    min-width: 100vw;
+    /*min-height: 100vh;
+    min-width: 100vw;*/
 }
 
     .grid_div .container_div {
@@ -24,6 +24,7 @@
             box-shadow: inset 0px 0px 29px -14px rgba(0,0,0,0.48);
             --unitType: basicUnit;
         }
+
             .grid_div .container_div .grid_unit:hover {
                 background-color: lightblue;
             }
@@ -38,6 +39,17 @@
     padding: 5px 0 5px 0;
 }
 
+    .taskbar_div.left {
+    }
+
+    .taskbar_div.right {
+        justify-content: flex-end;
+    }
+
+    .taskbar_div.center {
+        justify-content: center;
+    }
+
     /* Dropdown Button */
     .taskbar_div .base_button {
         color: white;
@@ -45,17 +57,14 @@
         cursor: pointer;
         margin-right: 1vw;
         padding: 0.8vh;
+        white-space: nowrap;
     }
-        .taskbar_div .base_button.home {
-            position: absolute;
-            right: 0px;
-        }
 
         .taskbar_div .base_button.algorithm {
             background-color: midnightblue;
             border: none;
         }
-        /* Dropdown button on hover & focus */
+            /* Dropdown button on hover & focus */
             .taskbar_div .base_button.algorithm:hover, .base_button.algorithm:focus {
                 background-color: #2980B9;
             }

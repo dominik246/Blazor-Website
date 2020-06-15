@@ -116,10 +116,12 @@
                 color: #444;
             }
 
-.left {
-    /*margin-right: 100px;*/
-}
+            .box .sub_box .box_item.left {
+            }
 
-.right {
-    /*margin-left: 100px;*/
-}
+            .box .sub_box .box_item.right {
+            }
+
+            .box .sub_box .box_item.disabled {
+                cursor: not-allowed;
+            }

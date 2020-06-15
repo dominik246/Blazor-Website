@@ -7,41 +7,43 @@
 
 <div>
     <div class="taskbar_div">
-        <div>
-            @{ string buttonOneId = "AlgorithmsDropDownButton";}
-            <button @onclick="() => DropDownMenu(buttonOneId)" class="base_button algorithm">Algorithms</button>
-            <div id="AlgorithmsDropDownButton" class="dropdown-content">
-                @foreach (string s in AlgorithmList)
-                {
-                    <a @onclick="() => GetAlgorithm(s)">@s</a>
-                }
+        <div class="taskbar_div left"></div>
+        <div class="taskbar_div center">
+            <div>
+                @{ string buttonOneId = "AlgorithmsDropDownButton";}
+                <button @onclick="() => DropDownMenu(buttonOneId)" class="base_button algorithm">Algorithms</button>
+                <div id="AlgorithmsDropDownButton" class="dropdown-content">
+                    @foreach (string s in AlgorithmList)
+                    {
+                        <a @onclick="() => GetAlgorithm(s)">@s</a>
+                    }
+                </div>
             </div>
+
+            <button @onclick="() => Sort()" class="base_button visualize">Sort!</button>
+
+            <div>
+                @{ string buttonTwoId = "SortbyDropDownButton";}
+                <button @onclick="() => DropDownMenu(buttonTwoId)" class="base_button algorithm">Sort by</button>
+                <div id="SortbyDropDownButton" class="dropdown-content">
+                    @foreach (string ss in Sortby)
+                    {
+                        <a @onclick="() => SortOrder(ss)">@ss</a>
+                    }
+                </div>
+            </div>
+
+            <div class="base_button clearGrid" @onclick="() => GenerateSortingGrid()">Restart Grid</div>
         </div>
 
-        <button @onclick="() => Sort()" class="base_button visualize">Sort!</button>
-
-        <div>
-            @{ string buttonTwoId = "SortbyDropDownButton";}
-            <button @onclick="() => DropDownMenu(buttonTwoId)" class="base_button algorithm">Sort by</button>
-            <div id="SortbyDropDownButton" class="dropdown-content">
-                @foreach (string ss in Sortby)
-                {
-                    <a @onclick="() => SortOrder(ss)">@ss</a>
-                }
-            </div>
-        </div>
-
-        <div class="base_button clearGrid" @onclick="() => GenerateSortingGrid()">Restart Grid</div>
-
-        <div class="base_button home">
+        <div class="taskbar_div right">
             <a class="base_button" href="https://github.com/dominik246/Blazor-Website">Github</a>
             <a class="base_button" href="/">Home</a>
         </div>
 
     </div>
 
-    <div class="sorting_box" id="sorting_box">
-    </div>
+    <div class="sorting_box" id="sorting_box"></div>
 </div>
 
 @code {

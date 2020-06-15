@@ -22,19 +22,19 @@
                 </a>
             </div>
             <div class="sub_box">
-                <a class="box_item right" href="sorts">
+                <a class="box_item left" href="sorts">
                     Sorting Algorithms
                 </a>
             </div>
         </div>
         <div>
-            <div class="sub_box disabledBox">
-                <a class="box_item left" href="/">
+            <div class="sub_box">
+                <a class="box_item disabled" onclick="return false">
                     Coming Soon
                 </a>
             </div>
-            <div class="sub_box disabledBox">
-                <a class="box_item left" href="/">
+            <div class="sub_box">
+                <a class="box_item disabled" onclick="return false">
                     Coming Soon
                 </a>
             </div>
@@ -43,11 +43,4 @@
 </div>
 
 @code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JSRuntime.InvokeVoidAsync("Disable");
-        }
-    }
 }
