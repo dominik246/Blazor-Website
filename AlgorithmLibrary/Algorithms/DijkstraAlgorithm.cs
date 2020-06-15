@@ -43,13 +43,14 @@ namespace ShortestPathLibrary.Algorithms
             List<IBasicNodeModel> visitedNodesInOrder = new List<IBasicNodeModel>();
 
             List<IBasicNodeModel> unvisitedNodes = await _getNodes.GetAsync(graph);
+            unvisitedNodes.Reverse();
 
             while (unvisitedNodes.Count > 0)
             {
                 unvisitedNodes = await _sortNodes.SortAsync(unvisitedNodes);
 
-                IBasicNodeModel closestNode = unvisitedNodes[0];
-                unvisitedNodes.RemoveAt(0);
+                IBasicNodeModel closestNode = unvisitedNodes[^1];
+                unvisitedNodes.RemoveAt(unvisitedNodes.Count - 1);
 
                 if (closestNode.NodeType is UnitType.WallNode)
                     continue;

@@ -17,7 +17,7 @@ namespace ShortestPathLibrary.Helpers
         {
             List<IBasicNodeModel> sortedNodes = new List<IBasicNodeModel>();
 
-            await Task.Run(() => sortedNodes = unsortedNodes.OrderBy(n => n.Distance).ToList());
+            await Task.Run(() => sortedNodes = unsortedNodes.OrderByDescending(n => n.Distance).ToList());
 
             return sortedNodes;
         }
