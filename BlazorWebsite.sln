@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandingWebsite", "LandingWe
 		{B1F23E90-47AD-4860-8901-B8EA393704CE} = {B1F23E90-47AD-4860-8901-B8EA393704CE}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithmLibrary", "SortingAlgorithmLibrary\SortingAlgorithmLibrary.csproj", "{B429724D-2CDB-4B78-B51C-536DF3C3756C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortingAlgorithmLibrary", "SortingAlgorithmLibrary\SortingAlgorithmLibrary.csproj", "{B429724D-2CDB-4B78-B51C-536DF3C3756C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
